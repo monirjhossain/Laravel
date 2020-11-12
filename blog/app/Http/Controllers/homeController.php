@@ -28,16 +28,36 @@ class homeController extends Controller
     }
 
     public function form(){
-        return view('myform');
+        return view('form/myform');
     }
 
-    public function process(Request $req){
+    // public function process(Request $r){
+    //     echo $r->method().'<br>';
+    //     if($r->method()=='POST'){
+    //         echo 'method get';
+    //     }
+    //     else{
+    //         echo 'not get';
+    //     }
         
-            echo "Your Name is " . $req->input('name');
-            echo "<br>";
-            echo "Your Email is " . $req->input('email');
-            echo "<br>";
-            echo "Your Address is " . $req->input('address');
+    // }
+
+    public function process(Request $r){
+        // print_r( $r->all()). '<br>';
+
+        $name = $r->input('name');
+        $email=$r->input('email');
+        $mobile=$r->input('mobile');
+        $roll=$r->input('roll');
+        $status=$r->input('status');
+
+        $data=DB::table('students')->insert([
+            ['id'=>'', 'name' => $name, 'email' => $email,'mobile' => $mobile, 'roll' => $roll,'status' => $status],
+        ]);
+ 
+       echo $data?"Insert Success":"Data Insert Fail";
+
+        // DB::insert('insert into students (name,email,mobile,roll,status) values (?,?, ?,?, ?)', [$name,$email,$mobile,$roll,$status]);
         
     }
 

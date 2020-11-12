@@ -104,26 +104,34 @@
 // return view('pages.contact');
 // });
 
-//Route::get('getrequest/{name}/{age}', 'RequestController@index');
-//Route::get('info/{name}/{address}', 'RequestController@info');
 
-Route::get('/form','homeController@form');
-Route::get('/process','homeController@process');
+// Route::get('/', function () {
+// return view('bs_pages.home');
+// });
+// Route::get('/about', function () {
+// return view('bs_pages.about');
+// });
 
-Route::get('/getquery','qetQueryController@index');
+// Route::get('/contact', function () {
+// return view('bs_pages.contact');
+// });
 
+// Route::get('/gallery', function () {
+// return view('bs_pages.gallery');
+// });
 
-Route::get('/', function () {
-return view('bs_pages.home');
-});
-Route::get('/about', function () {
-return view('bs_pages.about');
-});
+// Route::get('/getrequest', 'requestController@index' );
+// Route::get('/getrequest/{name}/{age}', 'requestController@index' );
+// Route::get('/info/{name}/{address}', 'requestController@info' );
+// Route::get('/form', 'homeController@form' );
+// Route::post('/process', 'homeController@process' );
+// Route::get('/process', 'homeController@process' );
 
-Route::get('/contact', function () {
-return view('bs_pages.contact');
-});
+Route::get('/getdataa', 'getQueryController@index' );
+Route::get('/getdataa/edit/{id}', 'getQueryController@edit' );
 
-Route::get('/gallery', function () {
-return view('bs_pages.gallery');
-});
+Route::get('/getquery', 'getqueryController@index');
+
+Route::get('/studentForm', 'getQueryController@studentForm');
+
+Route::post('/insert', 'getQueryController@insert');
