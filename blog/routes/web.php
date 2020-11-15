@@ -105,9 +105,9 @@
 // });
 
 
-// Route::get('/', function () {
-// return view('bs_pages.home');
-// });
+Route::get('/', function () {
+return view('bs_pages.home');
+});
 // Route::get('/about', function () {
 // return view('bs_pages.about');
 // });
@@ -128,6 +128,7 @@
 // Route::get('/process', 'homeController@process' );
 
 Route::get('/getdataa', 'getQueryController@index' );
+
 Route::get('/getdataa/edit/{id}', 'getQueryController@edit' );
 
 Route::get('/getquery', 'getqueryController@index');
@@ -135,3 +136,9 @@ Route::get('/getquery', 'getqueryController@index');
 Route::get('/studentForm', 'getQueryController@studentForm');
 
 Route::post('/insert', 'getQueryController@insert');
+
+Route::get('/edit/{id}', 'getQueryController@edit');
+
+Route::post('/update', 'getQueryController@update');
+
+Route::resource('sharks', 'sharksController');

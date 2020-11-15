@@ -11,6 +11,7 @@
     <h2>Student Form</h2>
     <input type="text" name="stname" placeholder="Enter Student name"><br>
     <input type="text" name="email" placeholder="Enter email name"><br>
+    <input type="text" name="phone" placeholder="Enter Mobile Number"><br> 
     @php
         echo csrf_field();
     @endphp
