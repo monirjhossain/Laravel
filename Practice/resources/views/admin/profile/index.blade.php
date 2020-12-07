@@ -43,11 +43,9 @@
                       {{ session('password_change_status') }}
                   </div>
                   @endif
-                  @if ($errors->all())
+                  @if (session('database_status'))
                   <div class="alert alert-danger">
-                      @foreach ($errors->all() as $error)
-                          <li>{{ $error }}</li>
-                      @endforeach
+                     {{ session('database_status') }}
                   </div>
                   @endif
                     <form method="POST" action="{{ url('password/post') }}">

@@ -32,16 +32,17 @@
                         <table class="table table-bordered">
                             <thead>
                               <tr>
-                                <th scope="col">Serial Number</th>
-                                <th scope="col">Category Name</th>
-                                <th scope="col">Added By</th>
-                                <th scope="col">Created Time</th>
-                                <th scope="col">Updated Time</th>
-                                <th scope="col">Action</th>
+                                <th>Serial Number</th>
+                                <th>Category Name</th>
+                                <th>Added By</th>
+                                <th>Created Time</th>
+                                <th>Updated Time</th>
+                                <th>Category Photo</th>
+                                <th>Action</th>
                               </tr>
                             </thead>
-                          @forelse ($categories as $category)
-                              <tbody>  
+                            <tbody>  
+                              @forelse ($categories as $category)
                               <tr>
                                 <td>{{ $loop->index+1 }}</td>
                                 <td>{{ $category->category_name }}</td>
@@ -61,7 +62,10 @@
                                 @endif
                                 </td>
                                 <td>
-                                  <div class="btn-group text-white" role="group" aria-label="Basic Example">
+                                  <img src="{{ asset('uploads/category_photos') }}/{{ $category->category_photo }}" width="100">
+                                </td>
+                                <td>
+                                  <div class="btn-group text-white" role="group"    aria-label="Basic Example">
                                     <a href="{{ url('update/category') }}/{{ $category->id }}" type="button" class="btn btn-info text-white">Update</a>
                                     <a href="{{ url('delete/category') }}/{{ $category->id }}" type="button" class="btn btn-danger text-white">Delete</a>
                                   </div>
@@ -71,8 +75,8 @@
                               <tr>
                                 <td colspan="50" class="text-center">Data is not here</td>
                               </tr>
+                              @endforelse  
                             </tbody>
-                          @endforelse  
                         </table>
                     </div>
                 </div>
@@ -84,12 +88,13 @@
                       <table class="table table-bordered">
                           <thead>
                             <tr>
-                              <th scope="col">Serial Number</th>
-                              <th scope="col">Category Name</th>
-                              <th scope="col">Added By</th>
-                              <th scope="col">Created Time</th>
-                              <th scope="col">Updated Time</th>
-                              <th scope="col">Action</th>
+                              <th>Serial Number</th>
+                              <th>Category Name</th>
+                              <th>Added By</th>
+                              <th>Created Time</th>
+                              <th>Updated Time</th>
+                              <th>Category Photo</th>
+                              <th>Action</th>
                             </tr>
                           </thead>
                           <tbody>  
@@ -112,6 +117,7 @@
                                   No time show
                               @endif
                               </td>
+                              <td><img src="" alt=""></td>
                               <td>
                                 <div class="btn-group text-white" role="group" aria-label="Basic Example">
                                   <a href="{{ url('restore/category') }}/{{ $deleted_category->id }}" type="button" class="btn btn-success text-white">Restore</a>
@@ -140,11 +146,15 @@
                           {{ session('success_message') }}
                       </div>
                       @endif
-                        <form method="POST" action="{{ url('/add/category/post') }}">
+                        <form method="POST" action="{{ url('/add/category/post') }}" enctype="multipart/form-data">
                           @csrf
                             <div class="form-group">
                               <label for="exampleInputEmail1">Category Name</label> 
                               <input type="text" class="form-control" name="category_name" placeholder="Enter Category Name">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Category Photo</label> 
+                              <input type="file" class="form-control" name="category_photos" placeholder="Enter Category Photo">
                             </div>
                             @error('category_name')
                                 <div class="alert alert-danger">

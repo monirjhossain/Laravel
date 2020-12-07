@@ -5,13 +5,19 @@ use Illuminate\Http\Request;
 use App\Category;
 use Auth;
 use Carbon\Carbon;
+use Image;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
    function addcategory(){
         $categories = Category::all();
         $deleted_categories = Category::onlyTrashed()->get();
-       return view('/admin/category/index', compact('categories','deleted_categories'));
+        return view('/admin/category/index', compact('categories','deleted_categories'));
    }
    function categorypost(Request $req){
     $req->validate([
@@ -22,11 +28,23 @@ class CategoryController extends Controller
         // 'category_name.required' => 'Tomar Category koi?'
     ]);
         //Insert data on Database
-        Category::insert([
+        $category_id = Category::insertGetId([
             'category_name' => $req->category_name,
             'user_id' => Auth::user()->id,
+            'category_photo' => $req->category_name,
             'created_at' => Carbon::now()
         ]);
+
+        // Photo Upload start
+        $uploaded_photo = $req->file('category_photos');
+        $new_name = $category_id.".".$uploaded_photo->getClientOriginalExtension();
+        $new_upload_location = base_path('public/uploads/category_photos/' .$new_name);
+        Image::make($uploaded_photo)->resize(150,200)->save($new_upload_location, 50);
+        // Photo Upload end
+        Category::find($category_id)->update([
+            'category_photo'=>$new_name
+        ]);
+
         return back()->with('success_message','Your Category inserted has been successfull');   
 }
 

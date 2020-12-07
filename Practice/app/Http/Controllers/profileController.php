@@ -9,6 +9,11 @@ use Hash;
 
 class profileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     function index(){
         return view('admin/profile/index');
     }
@@ -42,7 +47,7 @@ class profileController extends Controller
               'password' => Hash::make($req->password)
           ]);
        }else{
-        return back()->withErrors("Your old password does not match the db password");
+        return back()->with("database_status","Your old password does not match the db password");
        }
        return back()->with('password_change_status', 'Your password has been changed successfully');
     }

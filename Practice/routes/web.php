@@ -38,6 +38,7 @@ Route::get('/restore/category/{category_id}', 'CategoryController@restorecategor
 
 Route::get('/harddelete/category/{category_id}', 'CategoryController@harddeletecategory');
 
+//Profile Controller Routes
 Route::get('/profile', 'profileController@index');
 
 Route::post('/profile/post', 'profileController@profilepost');
