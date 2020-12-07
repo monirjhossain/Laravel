@@ -39,7 +39,7 @@ class CategoryController extends Controller
         $uploaded_photo = $req->file('category_photos');
         $new_name = $category_id.".".$uploaded_photo->getClientOriginalExtension();
         $new_upload_location = base_path('public/uploads/category_photos/' .$new_name);
-        Image::make($uploaded_photo)->resize(150,200)->save($new_upload_location, 50);
+        Image::make($uploaded_photo)->resize(200,150)->save($new_upload_location, 50);
         // Photo Upload end
         Category::find($category_id)->update([
             'category_photo'=>$new_name
