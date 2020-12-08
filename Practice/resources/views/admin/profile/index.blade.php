@@ -3,8 +3,8 @@
 
 <div class="sl-mainpanel">
   <nav class="breadcrumb sl-breadcrumb">
-    <a class="breadcrumb-item" href="{{ url('add/category') }}">Add Category</a>
-    <span class="breadcrumb-item active">User List</span>
+    <a class="breadcrumb-item" href="{{ url('home') }}">User List</a>
+    <span class="breadcrumb-item active">Edit Profile</span>
   </nav>
 
   <div class="sl-pagebody">

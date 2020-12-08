@@ -21,7 +21,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->paginate(3);
+        $users = User::latest()->paginate(4);
         $total_users = User::count();
 
         //send data to blade via Compact.

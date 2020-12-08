@@ -1,4 +1,7 @@
 @extends('layouts.dashboard_master')
+@section('category')
+    active
+@endsection
 @section('content')
 <div class="sl-mainpanel">
   <nav class="breadcrumb sl-breadcrumb">

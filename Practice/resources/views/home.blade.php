@@ -1,4 +1,8 @@
 @extends('layouts/dashboard_master')
+@section('home')
+    active
+@endsection
+
 @section('content')
     <!-- ########## START: MAIN PANEL ########## -->
     <div class="sl-mainpanel">

@@ -44,7 +44,7 @@
   <body>
 
     <!-- ########## START: LEFT PANEL ########## -->
-    <div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i> starlight</a></div>
+    <div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i> Nir E-Shop</a></div>
     <div class="sl-sideleft">
       <div class="input-group input-group-search">
         <input type="search" name="search" class="form-control" placeholder="Search">
@@ -55,23 +55,22 @@
 
       <label class="sidebar-label">Navigation</label>
       <div class="sl-sideleft-menu">
-        <a href="{{ url('home') }}" class="sl-menu-link active">
+        <a href="{{ url('home') }}" class="sl-menu-link @yield('home')">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
             <span class="menu-item-label">Home</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <a href="widgets.html" class="sl-menu-link">
-          <div class="sl-menu-item">
-            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
-            <span class="menu-item-label">Cards &amp; Widgets</span>
-          </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
-        <a href="{{ url('add/category') }}" class="sl-menu-link">
+        <a href="{{ url('add/category') }}" class="sl-menu-link @yield('category')">
           <div class="sl-menu-item">
             <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
             <span class="menu-item-label">Category</span>
-            {{-- <i class="menu-item-arrow fa fa-angle-down"></i> --}}
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <a href="{{ url('/') }}" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
+            <span class="menu-item-label">My Website</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         {{-- <ul class="sl-menu-sub nav flex-column">
@@ -284,20 +283,21 @@
     <!-- ########## END: RIGHT PANEL ########## --->
 
 
-@yield('content')
+ @yield('content')
 
-</div><!-- sl-pagebody -->
-<footer class="sl-footer">
-  <div class="footer-left">
-    <div class="mg-b-2">Copyright &copy; 2017. Starlight. All Rights Reserved.</div>
-    <div>Made by ThemePixels.</div>
-  </div>
-  <div class="footer-right d-flex align-items-center">
-    <span class="tx-uppercase mg-r-10">Share:</span>
-    <a target="_blank" class="pd-x-5" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//themepixels.me/starlight"><i class="fa fa-facebook tx-20"></i></a>
-    <a target="_blank" class="pd-x-5" href="https://twitter.com/home?status=Starlight,%20your%20best%20choice%20for%20premium%20quality%20admin%20template%20from%20Bootstrap.%20Get%20it%20now%20at%20http%3A//themepixels.me/starlight"><i class="fa fa-twitter tx-20"></i></a>
-  </div>
-</footer>
+</div>
+<div class="sl-mainpanel"><!-- sl-pagebody -->
+  <footer class="sl-footer">
+    <div class="footer-left">
+      <div class="mg-b-2">Copyright &copy; {{ Carbon\Carbon::now()->format('Y') }}. Starlight. All Rights Reserved.</div>
+      <div>Made by monirjhossain</div>
+    </div>
+    <div class="footer-right d-flex align-items-center">
+      <span class="tx-uppercase mg-r-10">Share:</span>
+      <a target="_blank" class="pd-x-5" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//themepixels.me/starlight"><i class="fa fa-facebook tx-20"></i></a>
+      <a target="_blank" class="pd-x-5" href="https://twitter.com/home?status=Starlight,%20your%20best%20choice%20for%20premium%20quality%20admin%20template%20from%20Bootstrap.%20Get%20it%20now%20at%20http%3A//themepixels.me/starlight"><i class="fa fa-twitter tx-20"></i></a>
+    </div>
+  </footer>
 </div><!-- sl-mainpanel -->
 <!-- ########## END: MAIN PANEL ########## -->
 
