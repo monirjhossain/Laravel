@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Category;
+
 class FrontendController extends Controller
 {
     function index(){
-        return view('index');
+        
+        return view('index', [
+            'categories' => Category::all()
+        ]);
     }
     function about(){
-
-        $data = "How are you";
-        $arr = array('Dhaka','Rajshahi','Khulna','Dinajpur','Maymensingh','Barishal','Kishorganj');
-        
-        return view('about', compact('data','arr'));
+        return view('about');
     }
     function contact(){
         return view('contact');

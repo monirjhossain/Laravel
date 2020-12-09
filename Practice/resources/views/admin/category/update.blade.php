@@ -1,6 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.dashboard_master')
 @section('content')
-    <div class="container">
+
+<div class="sl-mainpanel">
+  <nav class="breadcrumb sl-breadcrumb">
+    <a class="breadcrumb-item" href="{{ url('home') }}">Home</a>
+    <span class="breadcrumb-item active">Add Category</span>
+  </nav>
+
+  <div class="sl-pagebody">
+
+    <div class="row row-sm">
+      <div class="container">
         <div class="row">
             <div class="col-md-4 m-auto">
                 <nav aria-label="breadcrumb">
@@ -33,4 +43,10 @@
             </div>
         </div>
     </div>
+      </div>
+    </div>
+</div>
+
+
+    
 @endsection
