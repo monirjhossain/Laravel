@@ -1,35 +1,42 @@
-@extends('layouts.app')
+@extends('layouts.dashboard_master')
 @section('content')
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 m-auto">
-            <div class="card">
-                <div class="card-header">
-                    Edit Your Profile
-                </div>
-                <div class="card-body">
-                  @if (session('success_message'))
-                  <div class="alert alert-success">
-                      {{ session('success_message') }}
-                  </div>
-                  @endif
-                    <form method="POST" action="{{ url('/profile/post') }}">
-                      @csrf
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Name</label> 
-                          <input type="text" class="form-control" name="name" placeholder="Change your Name" value="{{ Str::title(Auth::user()->name) }}">
-                        </div>
-                        @error('name')
-                            <div class="alert alert-danger">
-                              {{ $message }}
-                            </div> 
-                        @enderror
-                        <button type="submit" class="btn btn-success">Change Profile</button>
-                      </form>
-                </div>
+<div class="sl-mainpanel">
+  <nav class="breadcrumb sl-breadcrumb">
+    <a class="breadcrumb-item" href="{{ url('home') }}">User List</a>
+    <span class="breadcrumb-item active">Edit Profile</span>
+  </nav>
+
+  <div class="sl-pagebody">
+
+    <div class="row row-sm">
+      <div class="col-md-6 m-auto">
+        <div class="card">
+            <div class="card-header">
+                Edit Your Profile
+            </div>
+            <div class="card-body">
+              @if (session('success_message'))
+              <div class="alert alert-success">
+                  {{ session('success_message') }}
+              </div>
+              @endif
+                <form method="POST" action="{{ url('/profile/post') }}">
+                  @csrf
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Name</label> 
+                      <input type="text" class="form-control" name="name" placeholder="Change your Name" value="{{ Str::title(Auth::user()->name) }}">
+                    </div>
+                    @error('name')
+                        <div class="alert alert-danger">
+                          {{ $message }}
+                        </div> 
+                    @enderror
+                    <button type="submit" class="btn btn-success">Change Profile</button>
+                  </form>
             </div>
         </div>
+    </div>
     </div>
     <div class="row mt-5">
         <div class="col-md-6 m-auto">
@@ -83,8 +90,5 @@
             </div>
         </div> 
     </div>   
-        
-    
 </div>
-
 @endsection

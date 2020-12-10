@@ -39,7 +39,7 @@ class CategoryController extends Controller
         $uploaded_photo = $req->file('category_photos');
         $new_name = $category_id.".".$uploaded_photo->getClientOriginalExtension();
         $new_upload_location = base_path('public/uploads/category_photos/' .$new_name);
-        Image::make($uploaded_photo)->resize(150,200)->save($new_upload_location, 50);
+        Image::make($uploaded_photo)->resize(600,470)->save($new_upload_location, 50);
         // Photo Upload end
         Category::find($category_id)->update([
             'category_photo'=>$new_name
@@ -50,7 +50,8 @@ class CategoryController extends Controller
 
     function updatecategory($category_id){
         $category_name = Category::find($category_id)->category_name;
-        return view('admin/category/update', compact('category_name', 'category_id')); 
+        $category_photo = Category::find($category_id)->category_photo;
+        return view('admin/category/update', compact('category_name', 'category_id','category_photo')); 
     }
 
     function updatecategorypost(Request $request){
@@ -71,7 +72,10 @@ class CategoryController extends Controller
     }
 
     function harddeletecategory($category_id){
+
+        $delete_photo_location = base_path('public/uploads/category_photos/' . Category::onlyTrashed()->find($category_id)->category_photo);
         Category::onlyTrashed()->find($category_id)->forceDelete();
+        unlink($delete_photo_location);
         return back()->with('hardDelete_status','Your Category has been Permanently Deleted!');
     }
 
