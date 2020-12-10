@@ -40,7 +40,7 @@
 
                             <div class="form-group">
                               <label for="exampleInputEmail1">New Category Name</label> 
-                              <input type="file" class="form-control" name="new_category_name" value="{{ $category_name }}">
+                              <input type="file" class="form-control" name="new_category_photo" value="{{ $category_name }}">
                             </div>
 
                             <button type="submit" class="btn btn-success">Update Category</button>

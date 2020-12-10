@@ -40,7 +40,9 @@ Route::get('/harddelete/category/{category_id}', 'CategoryController@harddeletec
 
 //Profile Controller Routes
 Route::get('/profile', 'profileController@index');
-
 Route::post('/profile/post', 'profileController@profilepost');
-
 Route::post('/password/post', 'profileController@passwordpost');
+
+//Product Controller
+Route::get('/add/product', 'ProductController@addproduct');
+Route::post('/add/product/post', 'ProductController@addproductpost');

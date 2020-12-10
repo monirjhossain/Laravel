@@ -19,8 +19,8 @@ class CategoryController extends Controller
         $deleted_categories = Category::onlyTrashed()->get();
         return view('/admin/category/index', compact('categories','deleted_categories'));
    }
-   function categorypost(Request $req){
-    $req->validate([
+   function categorypost(Request $request){
+    $request->validate([
         'category_name' => 'required|unique:categories,category_name'
     ],
     [
@@ -29,18 +29,19 @@ class CategoryController extends Controller
     ]);
         //Insert data on Database
         $category_id = Category::insertGetId([
-            'category_name' => $req->category_name,
+            'category_name' => $request->category_name,
             'user_id' => Auth::user()->id,
-            'category_photo' => $req->category_name,
+            'category_photo' => $request->category_name,
             'created_at' => Carbon::now()
         ]);
 
         // Photo Upload start
-        $uploaded_photo = $req->file('category_photos');
+        $uploaded_photo = $request->file('category_photos');
         $new_name = $category_id.".".$uploaded_photo->getClientOriginalExtension();
         $new_upload_location = base_path('public/uploads/category_photos/' .$new_name);
         Image::make($uploaded_photo)->resize(600,470)->save($new_upload_location, 50);
         // Photo Upload end
+
         Category::find($category_id)->update([
             'category_photo'=>$new_name
         ]);
@@ -55,6 +56,27 @@ class CategoryController extends Controller
     }
 
     function updatecategorypost(Request $request){
+        if($request->hasFile('new_category_photo')){
+            // Old photo delete start
+        $delete_photo_location = base_path('public/uploads/category_photos/' . Category::find($request->category_id)->category_photo);
+        unlink($delete_photo_location);
+            // new photo delete end
+
+            // new photo update start
+        $uploaded_photo = $request->file('new_category_photo');
+        $new_name = $request->category_id.".".$uploaded_photo->getClientOriginalExtension();
+        $new_upload_location = base_path('public/uploads/category_photos/' .$new_name);
+        Image::make($uploaded_photo)->resize(600,470)->save($new_upload_location, 50);
+        //Old photo update end
+
+        // new photo information update start
+        Category::find($request->category_id)->update([
+            'category_photo' => $new_name
+        ]);
+        // new photo information update end
+        }
+        
+        
         Category::find($request->category_id)->update([
             'category_name' => $request->category_name
         ]);
