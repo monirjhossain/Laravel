@@ -107,14 +107,14 @@
                         @csrf
                           <div class="form-group">
                             <label for="exampleInputEmail1">Product Name</label> 
-                            <input type="text" class="form-control" name="product_name" placeholder="Enter Category Name">
+                            <input type="text" class="form-control" name="product_name" placeholder="Enter Product Name">
                           </div>
                           <div class="form-group">
                             <label for="exampleInputEmail1">Category Name</label> 
-                            <select name="category_name" id="category_id" class="form-control">
+                            <select name="category_id" id="category_id" class="form-control">
                                 <option value="">--Select One--</option>
                                 @foreach ($categories as $category)
-                                <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
                           </div>
@@ -128,11 +128,11 @@
                           </div>
                           <div class="form-group">
                             <label for="exampleInputEmail1">Product Short Description</label> 
-                            <textarea name="short_description" id="" cols="30" rows="10" class="form-control" placeholder="Enter Product Short Description"></textarea>
+                            <textarea name="product_short_description" id="" cols="30" rows="10" class="form-control" placeholder="Enter Product Short Description"></textarea>
                           </div>
                           <div class="form-group">
                             <label for="exampleInputEmail1">Product Long Description</label> 
-                            <textarea name="long_description" id="" cols="30" rows="10" class="form-control" placeholder="Enter Product Long Description"></textarea>
+                            <textarea name="product_long_description" id="" cols="30" rows="10" class="form-control" placeholder="Enter Product Long Description"></textarea>
                           </div>
                           <div class="form-group">
                             <label for="exampleInputEmail1">Product Thumbnail Photo</label> 

@@ -19,6 +19,9 @@ Route::get('/about', 'FrontendController@about');
 
 Route::get('/contact', 'FrontendController@contact');
 
+//Product details 
+Route::get('/product/details/{product_id}', 'FrontendController@productdetails');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -37,6 +40,7 @@ Route::get('/delete/category/{category_id}', 'CategoryController@deletecategory'
 Route::get('/restore/category/{category_id}', 'CategoryController@restorecategory');
 
 Route::get('/harddelete/category/{category_id}', 'CategoryController@harddeletecategory');
+
 
 //Profile Controller Routes
 Route::get('/profile', 'profileController@index');

@@ -62,12 +62,12 @@ class CategoryController extends Controller
         unlink($delete_photo_location);
             // new photo delete end
 
-            // new photo update start
+        // new photo update start
         $uploaded_photo = $request->file('new_category_photo');
         $new_name = $request->category_id.".".$uploaded_photo->getClientOriginalExtension();
         $new_upload_location = base_path('public/uploads/category_photos/' .$new_name);
         Image::make($uploaded_photo)->resize(600,470)->save($new_upload_location, 50);
-        //Old photo update end
+        // new photo update end
 
         // new photo information update start
         Category::find($request->category_id)->update([
