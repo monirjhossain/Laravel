@@ -9,4 +9,9 @@ class Product extends Model
 {
     use SoftDeletes;
     protected $fillable = ['product_thumbnail_photo'];
+
+    function relationtocategorytable(){
+        return $this->hasOne('App\Category', 'id', 'category_id');
+    }
+
 }

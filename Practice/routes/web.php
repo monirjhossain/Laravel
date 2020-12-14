@@ -19,7 +19,7 @@ Route::get('/about', 'FrontendController@about');
 
 Route::get('/contact', 'FrontendController@contact');
 
-//Product details 
+//Single page Product details 
 Route::get('/product/details/{product_id}', 'FrontendController@productdetails');
 
 Auth::routes();
@@ -50,3 +50,4 @@ Route::post('/password/post', 'profileController@passwordpost');
 //Product Controller
 Route::get('/add/product', 'ProductController@addproduct');
 Route::post('/add/product/post', 'ProductController@addproductpost');
+

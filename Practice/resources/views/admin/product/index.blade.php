@@ -44,49 +44,38 @@
                           <thead>
                             <tr>
                               <th>Serial Number</th>
+                              <th>Product Name</th>
                               <th>Category Name</th>
-                              <th>Added By</th>
-                              <th>Created Time</th>
-                              <th>Updated Time</th>
-                              <th>Category Photo</th>
-                              <th>Action</th>
+                              <th>Product Price</th>
+                              <th>Product Quantity</th>
+                              <th>Product Photo</th>
+                              <th>CreatedA At</th>
                             </tr>
                           </thead>
                           <tbody>  
-                            {{-- @forelse ($categories as $category)
+                            @forelse ($products as $product)
                             <tr>
                               <td>{{ $loop->index+1 }}</td>
-                              <td>{{ $category->category_name }}</td>
-                              <td>{{ App\User::find($category->user_id)->name }}</td>
+                              <td>{{ $product->product_name }}</td>
+                              <td>{{ $product->relationtocategorytable->category_name }}</td>
+                              <td>{{ $product->product_price }}</td>
+                              <td>{{ $product->product_quantity }}</td>
                               <td>
-                              @if ($category->created_at)
-                                  {{ $category->created_at->diffForHumans() }}
-                              @else
-                                  No time show
-                              @endif
+                                <img src="{{ asset('uploads/product_photos') }}/{{ $product->product_thumbnail_photo }}" height="100">
                               </td>
-                              <td>
-                                @if ($category->updated_at)
-                                  {{ $category->updated_at->diffForHumans() }}
-                              @else
-                                  No time show
-                              @endif
-                              </td>
-                              <td>
-                                <img src="{{ asset('uploads/category_photos') }}/{{ $category->category_photo }}" width="100">
-                              </td>
-                              <td>
+                              <td>{{ ($product->created_at) }}</td>
+                              {{-- <td>
                                 <div class="btn-group text-white" role="group"    aria-label="Basic Example">
                                   <a href="{{ url('update/category') }}/{{ $category->id }}" type="button" class="btn btn-info text-white">Update</a>
                                   <a href="{{ url('delete/category') }}/{{ $category->id }}" type="button" class="btn btn-danger text-white">Delete</a>
                                 </div>
-                              </td>
+                              </td> --}}
                             </tr>
                             @empty 
                             <tr>
                               <td colspan="50" class="text-center">Data is not here</td>
                             </tr>
-                            @endforelse   --}}
+                            @endforelse  
                           </tbody>
                       </table>
                   </div>

@@ -6,10 +6,10 @@
         <div class="row">
             <div class="col-12">
                 <div class="breadcumb-wrap text-center">
-                    <h2>Shop Page</h2>
+                    <h2>{{ $product_info->product_name }}</h2>
                     <ul>
-                        <li><a href="{{ url('home') }}">Home</a></li>
-                        <li><span>Shop</span></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><span>{{ $product_info->product_name }}</span></li>
                     </ul>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                     </ul>
                     <ul class="cetagory">
                         <li>Categories:</li>
-                        <li><a href="#">Honey</a></li>
+                        <li><a href="#">{{ $product_info->relationtocategorytable->category_name }}</a></li>
                     </ul>
                     <ul class="socil-icon">
                         <li>Share :</li>
@@ -300,16 +300,17 @@
             </div>
         </div>
         <div class="row">
+            @foreach ($related_products as $related_product)
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="featured-product-wrap">
                     <div class="featured-product-img">
-                        <img src="assets/images/product/1.jpg" alt="">
+                        <img src="{{ asset('uploads/product_photos') }}/{{ $related_product->product_thumbnail_photo }}" alt="">
                     </div>
                     <div class="featured-product-content">
                         <div class="row">
                             <div class="col-7">
-                                <h3><a href="shop.html">Nature Honey</a></h3>
-                                <p>$219.56</p>
+                                <h3><a href="{{ url('product/details') }}/{{ $related_product->id }}">{{ $related_product->product_name }}</a></h3>
+                                <p>${{ $related_product->product_price }}</p>
                             </div>
                             <div class="col-5 text-right">
                                 <ul>
@@ -321,69 +322,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 col-12">
-                <div class="featured-product-wrap">
-                    <div class="featured-product-img">
-                        <img src="assets/images/product/2.jpg" alt="">
-                    </div>
-                    <div class="featured-product-content">
-                        <div class="row">
-                            <div class="col-7">
-                                <h3><a href="shop.html">Olive Oil</a></h3>
-                                <p>$354.75</p>
-                            </div>
-                            <div class="col-5 text-right">
-                                <ul>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-heart"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 col-12">
-                <div class="featured-product-wrap">
-                    <div class="featured-product-img">
-                        <img src="assets/images/product/3.jpg" alt="">
-                    </div>
-                    <div class="featured-product-content">
-                        <div class="row">
-                            <div class="col-7">
-                                <h3><a href="shop.html">Sunrise Oil</a></h3>
-                                <p>$214.80</p>
-                            </div>
-                            <div class="col-5 text-right">
-                                <ul>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-heart"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 col-12">
-                <div class="featured-product-wrap">
-                    <div class="featured-product-img">
-                        <img src="assets/images/product/4.jpg" alt="">
-                    </div>
-                    <div class="featured-product-content">
-                        <div class="row">
-                            <div class="col-7">
-                                <h3><a href="shop.html">Coconut Oil</a></h3>
-                                <p>$241.00</p>
-                            </div>
-                            <div class="col-5 text-right">
-                                <ul>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-heart"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>

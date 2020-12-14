@@ -20,6 +20,7 @@ class ProductController extends Controller
     function addproduct(){
         return view('admin.product.index', [
             'categories' => Category::all(),
+            'products' => Product::all()
         ]);
     }
 
