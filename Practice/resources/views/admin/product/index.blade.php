@@ -7,7 +7,7 @@
 <div class="sl-mainpanel">
     <nav class="breadcrumb sl-breadcrumb">
       <a class="breadcrumb-item" href="{{ url('home') }}">Home</a>
-      <span class="breadcrumb-item active">Add Product</span>
+      <span class="breadcrumb-item active">Add Slider</span>
     </nav>
   
     <div class="sl-pagebody">
