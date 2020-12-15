@@ -17,7 +17,9 @@ Route::get('/', 'FrontendController@index');
 
 Route::get('/about', 'FrontendController@about');
 
+//Contact Page Routes
 Route::get('/contact', 'FrontendController@contact');
+Route::post('/contact', 'ContactController@contactSubmit')->name('contact.submit');
 
 //Single page Product details 
 Route::get('/product/details/{product_id}', 'FrontendController@productdetails');
@@ -51,3 +53,21 @@ Route::post('/password/post', 'profileController@passwordpost');
 Route::get('/add/product', 'ProductController@addproduct');
 Route::post('/add/product/post', 'ProductController@addproductpost');
 
+//Slider Controller Routes
+Route::get('add/slider', 'SliderController@addslider');
+
+
+//SliderController Routes
+Route::get('/add/slider', 'SliderController@addslider');
+
+Route::post('/add/slider/post', 'SliderController@sliderpost');
+
+Route::get('/update/slider/{slider_id}', 'SliderController@updateslider');
+
+Route::post('/update/slider/post', 'SliderController@updatesliderpost');
+
+Route::get('/delete/slider/{slider_id}', 'SliderController@deleteslider');
+
+Route::get('/restore/slider/{slider_id}', 'SliderController@restoreslider');
+
+Route::get('/harddelete/slider/{slider_id}', 'SliderController@harddeleteslider');

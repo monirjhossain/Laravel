@@ -29,7 +29,8 @@
                 <div class="col-lg-8 col-12">
                     <div class="contact-form form-style">
                         <div class="cf-msg"></div>
-                        <form action="http://themepresss.com/tf/html/tohoney/mail.php" method="post" id="cf">
+                        <form action="{{ route('contact.submit') }}" method="POST" id="cf" enctype="multipart/form-data">
+                            @csrf
                             <div class="row">
                                 <div class="col-12 col-sm-6">
                                     <input type="text" placeholder="Name" id="fname" name="fname">
@@ -44,7 +45,7 @@
                                     <textarea class="contact-textarea" placeholder="Message" id="msg" name="msg"></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button id="submit" name="submit">SEND MESSAGE</button>
+                                    <button name="submit">SEND MESSAGE</button>
                                 </div>
                             </div>
                         </form>

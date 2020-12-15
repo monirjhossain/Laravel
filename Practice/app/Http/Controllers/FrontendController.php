@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Category;
 use App\Product;
+use App\Slider;
 
 class FrontendController extends Controller
 {
@@ -13,6 +14,7 @@ class FrontendController extends Controller
         
         return view('index', [
             'categories' => Category::all(),
+            'sliders' => Slider::all(),
             'products' => Product::latest()->get()
         ]);
     }
