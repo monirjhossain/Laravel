@@ -51,7 +51,12 @@ Route::post('/password/post', 'profileController@passwordpost');
 
 //Product Controller
 Route::get('/add/product', 'ProductController@addproduct');
+
 Route::post('/add/product/post', 'ProductController@addproductpost');
+
+Route::get('/update/product/{category_id}', 'ProductController@updateproduct');
+
+Route::post('/update/product/post', 'ProductController@updateproductpost');
 
 //Slider Controller Routes
 Route::get('add/slider', 'SliderController@addslider');

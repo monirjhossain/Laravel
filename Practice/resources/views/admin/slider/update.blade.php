@@ -1,4 +1,7 @@
 @extends('layouts.dashboard_master')
+@section('slider')
+    active
+@endsection
 @section('content')
 
 <div class="sl-mainpanel">

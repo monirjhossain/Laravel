@@ -73,16 +73,22 @@
             <span class="menu-item-label">Product</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <a href="{{ url('add/slider') }}" class="sl-menu-link @yield('product')">
+        <a href="{{ url('add/slider') }}" class="sl-menu-link @yield('slider')">
           <div class="sl-menu-item">
             <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
             <span class="menu-item-label">Slider</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <a href="{{ url('/') }}" class="sl-menu-link">
+        <a href="{{ url('/') }}" class="sl-menu-link" target="_blank">
           <div class="sl-menu-item">
             <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
             <span class="menu-item-label">My Website</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <a href="{{ url('/') }}" class="sl-menu-link" target="_blank">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
+            <span class="menu-item-label">My Blog</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         {{-- <ul class="sl-menu-sub nav flex-column">

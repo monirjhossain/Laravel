@@ -7,7 +7,7 @@
 <div class="sl-mainpanel">
     <nav class="breadcrumb sl-breadcrumb">
       <a class="breadcrumb-item" href="{{ url('home') }}">Home</a>
-      <span class="breadcrumb-item active">Add Slider</span>
+      <span class="breadcrumb-item active">Add Product</span>
     </nav>
   
     <div class="sl-pagebody">
@@ -49,7 +49,7 @@
                               <th>Product Price</th>
                               <th>Product Quantity</th>
                               <th>Product Photo</th>
-                              <th>CreatedA At</th>
+                              <th>Action</th>
                             </tr>
                           </thead>
                           <tbody>  
@@ -63,13 +63,12 @@
                               <td>
                                 <img src="{{ asset('uploads/product_photos') }}/{{ $product->product_thumbnail_photo }}" height="100">
                               </td>
-                              <td>{{ ($product->created_at) }}</td>
-                              {{-- <td>
+                              <td>
                                 <div class="btn-group text-white" role="group"    aria-label="Basic Example">
-                                  <a href="{{ url('update/category') }}/{{ $category->id }}" type="button" class="btn btn-info text-white">Update</a>
-                                  <a href="{{ url('delete/category') }}/{{ $category->id }}" type="button" class="btn btn-danger text-white">Delete</a>
+                                  <a href="{{ url('update/product') }}/{{ $product->id }}" type="button" class="btn btn-info text-white">Update</a>
+                                  <a href="{{ url('delete/product') }}/{{ $product->id }}" type="button" class="btn btn-danger text-white">Delete</a>
                                 </div>
-                              </td> --}}
+                              </td>
                             </tr>
                             @empty 
                             <tr>
