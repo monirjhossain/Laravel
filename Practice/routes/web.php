@@ -78,3 +78,12 @@ Route::get('/delete/slider/{slider_id}', 'SliderController@deleteslider');
 Route::get('/restore/slider/{slider_id}', 'SliderController@restoreslider');
 
 Route::get('/harddelete/slider/{slider_id}', 'SliderController@harddeleteslider');
+
+//Cart Controller Routes
+Route::get('/cart', 'CartController@cart');
+
+Route::post('/add/to/cart', 'CartController@addtocart');
+
+Route::get('/cart/delete/{cart_id}', 'CartController@cartdelete');
+
+Route::post('/cart/update', 'CartController@cartupdate');
