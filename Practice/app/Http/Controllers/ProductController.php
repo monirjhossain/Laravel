@@ -6,6 +6,7 @@ use App\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Product_multiple_photos;
 use Image;
 
 
@@ -24,8 +25,7 @@ class ProductController extends Controller
         ]);
     }
 
-    function addproductpost(Request $request){ 
-        //return $request->all();
+    function addproductpost(Request $request){
         $product_id = Product::insertGetId([
             'product_name' => $request->product_name,
             'category_id' => $request->category_id,
@@ -49,24 +49,45 @@ class ProductController extends Controller
             'product_thumbnail_photo' => $new_name
         ]);
         // new photo information update end
-        return back()->with('success_message','Your Product inserted has been successfull'); 
+
+        //Multiple product upload start
+        $flag = 1;
+        foreach ($request->file('product_multiple_photos') as $product_multiple_photo) {
+
+        $uploaded_photo = $product_multiple_photo;
+        $new_name = "6-".$flag.".".$uploaded_photo->getClientOriginalExtension();
+        $new_upload_location = base_path('public/uploads/product_multiple_photos/' .$new_name);
+        Image::make($uploaded_photo)->resize(600,550)->save($new_upload_location, 50);
+
+        Product_multiple_photos::insert([
+            'product_id' => $product_id,
+            'photo_name' => $new_name,
+            'created_at' => Carbon::now()
+        ]);
+        $flag++;
+        }
+        //Multiple product upload end
+        
+        return back()->with('success_message','Your Product inserted has been successfully'); 
     }
 
-    //Start
-    function updateproduct($category_id){
-        $product_name = Product::find($category_id)->product_name;
-        $product_price = Product::find($category_id)->product_price;
-        $product_short_description = Product::find($category_id)->product_short_description;
-        $product_photo = Product::find($category_id)->product_photo;
-        return view('admin/product/update', compact('product_name', 'product_price', 'category_id','product_photo')); 
+    //Update Start
+    function updateProduct($id){
+        $product = Product::find($id);
+
+        // $product_name = Product::find($category_id)->product_name;
+        // $product_price = Product::find($category_id)->product_price;
+        // $product_short_description = Product::find($category_id)->product_short_description;
+        // $product_thumbnail_photo = Product::find($category_id)->product_thumbnail_photo;
+        return view('admin/product/update', compact('product'));
     }
 
     function updateproductpost(Request $request){
         if($request->hasFile('new_product_photo')){
             // Old photo delete start
-        $delete_photo_location = base_path('public/uploads/product_photos/' . Product::find($request->product_id)->product_photo);
+        $delete_photo_location = base_path('public/uploads/product_photos/' . Product::find($request->product_id)->product_thumbnail_photo);
         unlink($delete_photo_location);
-            // new photo delete end
+            // Old photo delete end
 
         // new photo update start
         $uploaded_photo = $request->file('new_product_photo');
@@ -77,7 +98,7 @@ class ProductController extends Controller
 
         // new photo information update start
         Product::find($request->product_id)->update([
-            'product_photo' => $new_name
+            'product_thumbnail_photo' => $new_name
         ]);
         // new photo information update end
         }

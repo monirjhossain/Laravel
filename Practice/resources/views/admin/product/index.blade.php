@@ -126,6 +126,10 @@
                             <label for="exampleInputEmail1">Product Thumbnail Photo</label> 
                             <input type="file" class="form-control" name="product_thumbnail_photo">
                           </div>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Product Multiple Photo</label> 
+                            <input type="file" class="form-control" name="product_multiple_photos[]" multiple>
+                          </div>
 
                           @error('category_name')
                               <div class="alert alert-danger">

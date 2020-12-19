@@ -17,6 +17,8 @@ Route::get('/', 'FrontendController@index');
 
 Route::get('/about', 'FrontendController@about');
 
+Route::get('/shop', 'FrontendController@shop');
+
 //Contact Page Routes
 Route::get('/contact', 'FrontendController@contact');
 Route::post('/contact', 'ContactController@contactSubmit')->name('contact.submit');
@@ -54,9 +56,9 @@ Route::get('/add/product', 'ProductController@addproduct');
 
 Route::post('/add/product/post', 'ProductController@addproductpost');
 
-Route::get('/update/product/{category_id}', 'ProductController@updateproduct');
+Route::get('/update/product/{category_id}', 'ProductController@updateProduct');
 
-Route::post('/update/product/post', 'ProductController@updateproductpost');
+Route::post('/update/product/{id}', 'ProductController@updateproductpost');
 
 //Slider Controller Routes
 Route::get('add/slider', 'SliderController@addslider');
