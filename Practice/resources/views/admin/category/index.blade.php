@@ -42,7 +42,7 @@
                     <table class="table table-bordered">
                         <thead>
                           <tr>
-                            <th>Serial Number</th>
+                            <th>Sl No.</th>
                             <th>Category Name</th>
                             <th>Added By</th>
                             <th>Created Time</th>
@@ -98,7 +98,7 @@
                   <table class="table table-bordered">
                       <thead>
                         <tr>
-                          <th>Serial Number</th>
+                          <th>Sl No.</th>
                           <th>Category Name</th>
                           <th>Added By</th>
                           <th>Created Time</th>

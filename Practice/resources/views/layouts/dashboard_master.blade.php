@@ -79,6 +79,12 @@
             <span class="menu-item-label">Slider</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
+        <a href="{{ url('add/coupon') }}" class="sl-menu-link @yield('coupon')">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
+            <span class="menu-item-label">Coupon</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
         <a href="{{ url('/') }}" class="sl-menu-link" target="_blank">
           <div class="sl-menu-item">
             <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>

@@ -48,7 +48,9 @@ Route::get('/harddelete/category/{category_id}', 'CategoryController@harddeletec
 
 //Profile Controller Routes
 Route::get('/profile', 'profileController@index');
+
 Route::post('/profile/post', 'profileController@profilepost');
+
 Route::post('/password/post', 'profileController@passwordpost');
 
 //Product Controller
@@ -78,3 +80,29 @@ Route::get('/delete/slider/{slider_id}', 'SliderController@deleteslider');
 Route::get('/restore/slider/{slider_id}', 'SliderController@restoreslider');
 
 Route::get('/harddelete/slider/{slider_id}', 'SliderController@harddeleteslider');
+
+//Cart Controller Routes
+Route::get('/cart', 'CartController@cart');
+
+Route::get('/cart/{coupon_name}', 'CartController@cart');
+
+Route::post('/add/to/cart', 'CartController@addtocart');
+
+Route::get('/cart/delete/{cart_id}', 'CartController@cartdelete');
+
+Route::post('/cart/update', 'CartController@cartupdate');
+
+//Coupon Controller Routes
+Route::get('/add/coupon', 'CouponController@addcoupon');
+
+Route::post('/add/coupon/post', 'CouponController@addcouponpost');
+
+//Checkout Controller Routes
+
+Route::get('checkout', 'CheckoutController@index');
+
+//Customer Register Controller Routes
+
+Route::get('customer/register', 'Customer_registerController@customerregister');
+
+Route::get('customer/register/post', 'Customer_registerController@customerregisterpost');
