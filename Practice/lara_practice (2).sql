@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2020 at 06:58 PM
+-- Generation Time: Dec 21, 2020 at 07:50 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -41,8 +41,8 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `product_id`, `quantity`, `ip_address`, `created_at`, `updated_at`) VALUES
-(2, 4, 2, '127.0.0.1', '2020-12-20 01:14:42', '2020-12-20 01:14:47'),
-(3, 4, 1, '127.0.0.1', '2020-12-20 01:14:47', NULL);
+(8, 1, 1, '127.0.0.1', '2020-12-21 05:41:40', NULL),
+(9, 5, 1, '127.0.0.1', '2020-12-21 05:42:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -88,6 +88,31 @@ CREATE TABLE `contacts` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `coupons`
+--
+
+CREATE TABLE `coupons` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `coupon_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `discount_amount` int(11) NOT NULL,
+  `validity_date` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `coupons`
+--
+
+INSERT INTO `coupons` (`id`, `coupon_name`, `discount_amount`, `validity_date`, `created_at`, `updated_at`) VALUES
+(1, 'IDB44', 20, '2020-12-23', '2020-12-20 08:09:32', NULL),
+(2, 'WDPF44', 60, '2020-12-18', '2020-12-20 08:10:35', NULL),
+(3, 'JAVA35', 56, '2020-12-29', '2020-12-20 08:18:50', NULL),
+(4, 'GAV22', 56, '2020-12-31', '2020-12-20 14:37:44', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -125,7 +150,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2020_12_10_172159_create_products_table', 1),
 (21, '2020_12_15_111611_create_sliders_table', 2),
 (22, '2020_12_19_110402_create_product_multiple_photos_table', 3),
-(23, '2020_12_19_124130_create_carts_table', 4);
+(23, '2020_12_19_124130_create_carts_table', 4),
+(24, '2020_12_20_000306_create_coupons_table', 5);
 
 -- --------------------------------------------------------
 
@@ -240,6 +266,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` int(1) NOT NULL DEFAULT 1,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -249,11 +276,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Md. Monir Hossain', 'admin@monirjhossain.com', NULL, '$2y$10$3GfyuGDJ1zH/0L9LMuIQgOej4aq5uWYVRQv2X0p92ouR/REEHJmT.', NULL, '2020-12-11 16:42:58', '2020-12-11 16:42:58'),
-(2, 'Md. Monir Hossain', 'monir@gmail.com', NULL, '$2y$10$2qwqc2mKAxqc8RBOZaNWKOEgDd2uLVgxyqlDpEXDurQXW2o9BZ2KG', NULL, '2020-12-13 04:13:13', '2020-12-13 04:13:13'),
-(3, 'Tasnim Shifa Farin', 'farin@gmail.com', NULL, '$2y$10$gwjmvbb7I2RqGhgl1k2psOdlRbYHPI3b53jz7lcU/Cf/qnq/64ySG', NULL, '2020-12-15 04:47:39', '2020-12-15 04:47:39'),
-(4, 'saima', 'saima@gmail.com', NULL, '$2y$10$VDBUVuAhGasKbJZ2dIXJg.HOQfxmGCcS8Z7tEuhOsagplzGK/CHxW', NULL, '2020-12-15 15:23:39', '2020-12-15 15:23:39');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Md. Monir Hossain', 'admin@monirjhossain.com', NULL, '$2y$10$3GfyuGDJ1zH/0L9LMuIQgOej4aq5uWYVRQv2X0p92ouR/REEHJmT.', 1, NULL, '2020-12-11 16:42:58', '2020-12-11 16:42:58'),
+(2, 'Md. Monir Hossain', 'monir@gmail.com', NULL, '$2y$10$2qwqc2mKAxqc8RBOZaNWKOEgDd2uLVgxyqlDpEXDurQXW2o9BZ2KG', 1, NULL, '2020-12-13 04:13:13', '2020-12-13 04:13:13'),
+(3, 'Tasnim Shifa Farin', 'farin@gmail.com', NULL, '$2y$10$gwjmvbb7I2RqGhgl1k2psOdlRbYHPI3b53jz7lcU/Cf/qnq/64ySG', 1, NULL, '2020-12-15 04:47:39', '2020-12-15 04:47:39'),
+(4, 'saima', 'saima@gmail.com', NULL, '$2y$10$VDBUVuAhGasKbJZ2dIXJg.HOQfxmGCcS8Z7tEuhOsagplzGK/CHxW', 1, NULL, '2020-12-15 15:23:39', '2020-12-15 15:23:39');
 
 --
 -- Indexes for dumped tables
@@ -275,6 +302,12 @@ ALTER TABLE `categories`
 -- Indexes for table `contacts`
 --
 ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `coupons`
+--
+ALTER TABLE `coupons`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -328,7 +361,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -343,6 +376,12 @@ ALTER TABLE `contacts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `coupons`
+--
+ALTER TABLE `coupons`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -352,7 +391,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `products`
