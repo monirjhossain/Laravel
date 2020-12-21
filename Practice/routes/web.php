@@ -99,10 +99,11 @@ Route::post('/add/coupon/post', 'CouponController@addcouponpost');
 
 //Checkout Controller Routes
 
-Route::get('checkout', 'CheckoutController@index');
+Route::post('checkout', 'CheckoutController@index');
+Route::post('checkout/post', 'CheckoutController@checkoutpost');
 
 //Customer Register Controller Routes
 
 Route::get('customer/register', 'Customer_registerController@customerregister');
 
-Route::get('customer/register/post', 'Customer_registerController@customerregisterpost');
+Route::post('customer/register/post', 'Customer_registerController@customerregisterpost');

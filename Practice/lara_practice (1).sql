@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2020 at 07:50 AM
+-- Generation Time: Dec 21, 2020 at 07:00 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -42,7 +42,8 @@ CREATE TABLE `carts` (
 
 INSERT INTO `carts` (`id`, `product_id`, `quantity`, `ip_address`, `created_at`, `updated_at`) VALUES
 (8, 1, 1, '127.0.0.1', '2020-12-21 05:41:40', NULL),
-(9, 5, 1, '127.0.0.1', '2020-12-21 05:42:05', NULL);
+(9, 5, 1, '127.0.0.1', '2020-12-21 05:42:05', NULL),
+(10, 9, 3, '127.0.0.1', '2020-12-21 23:12:03', '2020-12-21 23:12:15');
 
 -- --------------------------------------------------------
 
@@ -151,7 +152,37 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (21, '2020_12_15_111611_create_sliders_table', 2),
 (22, '2020_12_19_110402_create_product_multiple_photos_table', 3),
 (23, '2020_12_19_124130_create_carts_table', 4),
-(24, '2020_12_20_000306_create_coupons_table', 5);
+(24, '2020_12_20_000306_create_coupons_table', 5),
+(27, '2020_12_21_180816_create_orders_table', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `full_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notes` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payment_option` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `full_name`, `email`, `phone_number`, `country`, `address`, `post_code`, `city`, `notes`, `payment_option`, `created_at`, `updated_at`) VALUES
+(1, 7, 'Al Maksumee', 'zara1@gmail.com', '0195326587', 'Bangladesh', 'Dhaka', '1400', 'Narayanganj', 'sdfgwaer', 1, '2020-12-22 02:56:14', NULL);
 
 -- --------------------------------------------------------
 
@@ -280,7 +311,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ro
 (1, 'Md. Monir Hossain', 'admin@monirjhossain.com', NULL, '$2y$10$3GfyuGDJ1zH/0L9LMuIQgOej4aq5uWYVRQv2X0p92ouR/REEHJmT.', 1, NULL, '2020-12-11 16:42:58', '2020-12-11 16:42:58'),
 (2, 'Md. Monir Hossain', 'monir@gmail.com', NULL, '$2y$10$2qwqc2mKAxqc8RBOZaNWKOEgDd2uLVgxyqlDpEXDurQXW2o9BZ2KG', 1, NULL, '2020-12-13 04:13:13', '2020-12-13 04:13:13'),
 (3, 'Tasnim Shifa Farin', 'farin@gmail.com', NULL, '$2y$10$gwjmvbb7I2RqGhgl1k2psOdlRbYHPI3b53jz7lcU/Cf/qnq/64ySG', 1, NULL, '2020-12-15 04:47:39', '2020-12-15 04:47:39'),
-(4, 'saima', 'saima@gmail.com', NULL, '$2y$10$VDBUVuAhGasKbJZ2dIXJg.HOQfxmGCcS8Z7tEuhOsagplzGK/CHxW', 1, NULL, '2020-12-15 15:23:39', '2020-12-15 15:23:39');
+(4, 'saima', 'saima@gmail.com', NULL, '$2y$10$VDBUVuAhGasKbJZ2dIXJg.HOQfxmGCcS8Z7tEuhOsagplzGK/CHxW', 1, NULL, '2020-12-15 15:23:39', '2020-12-15 15:23:39'),
+(5, 'Zara', 'zara@gmail.com', NULL, '$2y$10$qWTEEv3HKi2kwqnNzhzlIe1oDTi5JQMOjww4atFkJYLQMyGIBJwem', 2, NULL, '2020-12-21 23:35:49', NULL),
+(7, 'Al Maksumee', 'zara1@gmail.com', NULL, '$2y$10$ida8FUI4lHA5N7igK9Hx6OA4JTQAKVNNirSfTc0MzVzR14vOddSPi', 2, NULL, '2020-12-21 23:36:56', NULL);
 
 --
 -- Indexes for dumped tables
@@ -323,6 +356,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -361,7 +400,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -391,7 +430,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -415,7 +460,7 @@ ALTER TABLE `sliders`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
