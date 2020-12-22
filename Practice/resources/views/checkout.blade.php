@@ -81,7 +81,8 @@
                             @endforeach
                             
                             <li>Subtotal <span class="pull-right"><strong>${{ $sub_total }}</strong></span></li>
-                            
+                            <input type="hidden" name="sub_total" value="{{ $sub_total}}">
+                            <input type="hidden" name="total" value="{{ $total }}">
                             <li>Total<span class="pull-right">${{ $total }}</span></li>
                         </ul>
                         <ul class="payment-method">

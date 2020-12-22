@@ -25,6 +25,8 @@ class CreateOrdersTable extends Migration
             $table->string('city');
             $table->longText('notes');
             $table->integer('payment_option');
+            $table->float('sub_total');
+            $table->float('total');
             $table->timestamps();
         });
     }
