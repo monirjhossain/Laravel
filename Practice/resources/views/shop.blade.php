@@ -30,7 +30,7 @@
                             @foreach ($categories as $category)
 
                             <li>
-                                <a data-toggle="tab" href="#catergory_{{ $category->id }}">{{ $category->category_name }}</a>
+                                <a data-toggle="tab" href="#{{$category->category_id}}">{{ $category->category_name }}</a>
                             </li>
 
                             @endforeach
@@ -75,7 +75,7 @@
                     </ul>
                 </div>
                 @foreach ($categories as $category)   
-                <div class="tab-pane" id="#category_{{ $category->id }}">
+                <div class="tab-pane" id="{{ $category->category_id }}">
                     <ul class="row">
                         @foreach (App\Product::where('category_id', $category->id)->get() as $category_wise_product)    
                         <li class="col-xl-3 col-lg-4 col-sm-6 col-12">

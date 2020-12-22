@@ -27,6 +27,8 @@ class FrontendController extends Controller
     }
     
     function productdetails($product_id){
+        // return $product_id;
+        // die();
         $category_id = Product::find($product_id)->category_id;
         return view('productdetails', [
         'product_info' => Product::find($product_id),
