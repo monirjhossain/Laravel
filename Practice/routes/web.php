@@ -65,10 +65,6 @@ Route::post('/update/product/{id}', 'ProductController@updateproductpost');
 //Slider Controller Routes
 Route::get('add/slider', 'SliderController@addslider');
 
-
-//SliderController Routes
-Route::get('/add/slider', 'SliderController@addslider');
-
 Route::post('/add/slider/post', 'SliderController@sliderpost');
 
 Route::get('/update/slider/{slider_id}', 'SliderController@updateslider');

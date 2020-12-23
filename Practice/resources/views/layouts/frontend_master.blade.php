@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Tohoney - Home Page</title>
+    <title>Nir E-Shop - Home Page</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="{{ asset('frontend_assets') }}/images/favicon.png">
@@ -63,8 +63,8 @@
                 <div class="row">
                     <div class="col-md-6 col-12">
                         <ul class="d-flex header-contact">
-                            <li><i class="fa fa-phone"></i> +01 123 456 789</li>
-                            <li><i class="fa fa-envelope"></i> youremail@gmail.com</li>
+                            <li><i class="fa fa-phone"></i> +880 1948283811</li>
+                            <li><i class="fa fa-envelope"></i> md.monirjhossain@gmail.com</li>
                         </ul>
                     </div>
                     <div class="col-md-6 col-12">
@@ -73,9 +73,9 @@
                                 <a href="javascript:void(0);"><i class="fa fa-user"></i> My Account <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown_style">
                                     <li><a href="{{ url('login') }}">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a href="{{ url('customer/register') }}">Register</a></li>
+                                    <li><a href="{{ url('cart') }}">Cart</a></li>
+                                    <li><a href="{{ url('checkout') }}">Checkout</a></li>
                                     <li><a href="wishlist.html">wishlist</a></li>
                                 </ul>
                             </li>
@@ -91,7 +91,7 @@
                     <div class="col-lg-3 col-md-7 col-sm-6 col-6">
                         <div class="logo">
                             <a href="{{ url('/') }}">
-                        <img src="{{ asset('frontend_assets') }}/images/logo.png" alt="">
+                        <img src="{{ asset('frontend_assets') }}/images/logo.png" alt="" style="width:125px">
                         </a>
                         </div>
                     </div>
@@ -158,7 +158,7 @@
                                     @foreach (App\Cart::where('ip_address', request()->ip())->get() as $cart) 
                                     <li class="cart-items">
                                         <div class="cart-img">
-                                            <img src="" alt="">
+                                            <img style="width: 68px;" src="{{ asset('uploads/product_photos') }}/{{ App\Product::find($cart->product_id)->product_thumbnail_photo }}" alt="">
                                         </div>
                                         <div class="cart-content">
                                             <a href="cart.html">{{ App\Product::find($cart->product_id)->product_name }}</a>

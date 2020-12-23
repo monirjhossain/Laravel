@@ -30,7 +30,7 @@
                             @foreach ($categories as $category)
 
                             <li>
-                                <a data-toggle="tab" href="#catergory_{{ $category->id }}">{{ $category->category_name }}</a>
+                                <a data-toggle="tab" href="#category_{{ $category->id }}">{{ $category->category_name }}</a>
                             </li>
 
                             @endforeach
@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="single-product.html">{{ $product->product_name}}</a></h3>
+                                    <h3><a href="{{ url('product/details/') }}/{{ $product->id }}">{{ $product->product_name}}</a></h3>
                                     <p class="pull-left">${{ $product->product_price }}
 
                                     </p>
@@ -74,15 +74,15 @@
                         @endforeach
                     </ul>
                 </div>
-                @foreach ($categories as $category)   
-                <div class="tab-pane" id="#category_{{ $category->id }}">
+                @foreach ($categories as $category)
+                <div class="tab-pane" id="category_{{ $category->id }}">
                     <ul class="row">
                         @foreach (App\Product::where('category_id', $category->id)->get() as $category_wise_product)    
                         <li class="col-xl-3 col-lg-4 col-sm-6 col-12">
                             <div class="product-wrap">
                                 <div class="product-img">
                                     <span>Sale</span>
-                                    <img src="{{ asset('uploads/product_photo') }}/{{ $category_wise_product->product_thumbnail_photo }}" alt="">
+                                    <img src="{{ asset('uploads/product_photos') }}/{{ $category_wise_product->product_thumbnail_photo }}" alt="">
                                     <div class="product-icon flex-style">
                                         <ul>
                                             <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="product-content">
                                     <h3><a href="">{{ $category_wise_product->product_name }}</a></h3>
-                                    <p class="pull-left">${{ $category_wise_product->prouduct_price }}
+                                    <p class="pull-left">${{ $category_wise_product->product_price }}
 
                                     </p>
                                     <ul class="pull-right d-flex">
@@ -108,8 +108,8 @@
                         </li>
                         @endforeach
                     </ul>
-                </div> 
-                @endforeach
+                </div>
+                 @endforeach
             </div>
         </div>
     </div>
