@@ -16,7 +16,8 @@ class FrontendController extends Controller
         return view('index', [
             'categories' => Category::all(),
             'sliders' => Slider::all(),
-            'products' => Product::latest()->get()
+            'products' => Product::latest()->get(),
+            'best_sells' => Product::offset(0)->limit(4)->get()
         ]);
     }
     function about(){
