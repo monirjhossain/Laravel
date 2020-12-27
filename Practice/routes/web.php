@@ -62,6 +62,8 @@ Route::get('/update/product/{category_id}', 'ProductController@updateProduct');
 
 Route::post('/update/product/{id}', 'ProductController@updateproductpost');
 
+Route::get('/delete/product/{id}', 'ProductController@deleteproduct');
+
 //Slider Controller Routes
 Route::get('add/slider', 'SliderController@addslider');
 
