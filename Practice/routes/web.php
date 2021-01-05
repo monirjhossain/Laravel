@@ -105,4 +105,10 @@ Route::post('checkout/post', 'CheckoutController@checkoutpost');
 //Customer Register Controller Routes
 
 Route::get('customer/register', 'Customer_registerController@customerregister');
+
 Route::post('customer/register/post', 'Customer_registerController@customerregisterpost');
+
+//Stripe Payment Controller
+
+Route::get('stripe', 'StripePaymentController@stripe');
+Route::post('stripe', 'StripePaymentController@stripePost')->name('stripe.post');

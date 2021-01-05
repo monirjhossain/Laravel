@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2020 at 07:00 PM
+-- Generation Time: Dec 22, 2020 at 06:33 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -41,9 +41,7 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `product_id`, `quantity`, `ip_address`, `created_at`, `updated_at`) VALUES
-(8, 1, 1, '127.0.0.1', '2020-12-21 05:41:40', NULL),
-(9, 5, 1, '127.0.0.1', '2020-12-21 05:42:05', NULL),
-(10, 9, 3, '127.0.0.1', '2020-12-21 23:12:03', '2020-12-21 23:12:15');
+(15, 7, 1, '127.0.0.1', '2020-12-23 01:28:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -68,7 +66,7 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `category_name`, `user_id`, `category_photo`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'Computer', 3, '1.jpg', '2020-12-15 05:10:47', '2020-12-15 05:10:47', NULL),
 (2, 'Headphone', 3, '2.jpg', '2020-12-15 06:30:06', '2020-12-15 06:30:06', NULL),
-(3, 'Mobile', 1, '3.jpg', '2020-12-16 07:48:52', '2020-12-17 17:16:55', NULL);
+(3, 'Mobile', 1, '3.jpg', '2020-12-16 07:48:52', '2020-12-23 02:32:10', NULL);
 
 -- --------------------------------------------------------
 
@@ -153,7 +151,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2020_12_19_110402_create_product_multiple_photos_table', 3),
 (23, '2020_12_19_124130_create_carts_table', 4),
 (24, '2020_12_20_000306_create_coupons_table', 5),
-(27, '2020_12_21_180816_create_orders_table', 6);
+(28, '2020_12_21_180816_create_orders_table', 6),
+(29, '2020_12_22_164252_create_order_lists_table', 7);
 
 -- --------------------------------------------------------
 
@@ -173,6 +172,8 @@ CREATE TABLE `orders` (
   `city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `notes` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `payment_option` int(11) NOT NULL,
+  `sub_total` double(8,2) NOT NULL,
+  `total` double(8,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -181,8 +182,43 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `full_name`, `email`, `phone_number`, `country`, `address`, `post_code`, `city`, `notes`, `payment_option`, `created_at`, `updated_at`) VALUES
-(1, 7, 'Al Maksumee', 'zara1@gmail.com', '0195326587', 'Bangladesh', 'Dhaka', '1400', 'Narayanganj', 'sdfgwaer', 1, '2020-12-22 02:56:14', NULL);
+INSERT INTO `orders` (`id`, `user_id`, `full_name`, `email`, `phone_number`, `country`, `address`, `post_code`, `city`, `notes`, `payment_option`, `sub_total`, `total`, `created_at`, `updated_at`) VALUES
+(1, 7, 'Al Maksumee', 'zara1@gmail.com', '0195326587', 'Bangladesh', 'Dhaka', '1400', 'Narayanganj', 'ksjahdfkahsdkfhakjhdsfhu', 1, 19704.00, 8669.76, '2020-12-23 01:10:50', NULL),
+(2, 7, 'Al Maksumee', 'zara1@gmail.com', '0195326587', 'Bangladesh', 'Dhaka', '1400', 'Narayanganj', 'dfhsghshgsgh', 1, 5000.00, 2200.00, '2020-12-23 01:19:29', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_lists`
+--
+
+CREATE TABLE `order_lists` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_lists`
+--
+
+INSERT INTO `order_lists` (`id`, `order_id`, `user_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
+(1, 1, 7, 1, 1, '2020-12-23 01:03:30', NULL),
+(2, 1, 7, 5, 1, '2020-12-23 01:03:30', NULL),
+(3, 1, 7, 9, 3, '2020-12-23 01:03:30', NULL),
+(4, 2, 7, 1, 1, '2020-12-23 01:04:10', NULL),
+(5, 2, 7, 5, 1, '2020-12-23 01:04:10', NULL),
+(6, 2, 7, 9, 3, '2020-12-23 01:04:10', NULL),
+(7, 3, 7, 1, 1, '2020-12-23 01:08:18', NULL),
+(8, 3, 7, 5, 1, '2020-12-23 01:08:18', NULL),
+(9, 3, 7, 9, 3, '2020-12-23 01:08:18', NULL),
+(10, 1, 7, 2, 3, '2020-12-23 01:10:50', NULL),
+(11, 1, 7, 6, 2, '2020-12-23 01:10:50', NULL),
+(12, 2, 7, 8, 1, '2020-12-23 01:19:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -227,7 +263,7 @@ INSERT INTO `products` (`id`, `product_name`, `category_id`, `product_price`, `p
 (5, 'Dell Laptop', 1, 5000, 258, '5.jpg', 'ataqwerqtwr', 'wefqawergfqewrg', '2020-12-16 12:32:11', '2020-12-16 12:32:11', NULL),
 (6, 'Yusii Headphone', 2, 1452, 45, '6.jpg', 'rfgqrewqre', 'aqwerfgqrewgqwr', '2020-12-16 12:32:55', '2020-12-16 12:32:55', NULL),
 (7, 'Sony Headphone', 2, 5600, 369, '7.jpg', 'dsfgwerwgerwr', 'werwgqewertg', '2020-12-16 12:33:45', '2020-12-16 12:33:45', NULL),
-(8, 'Nokia V1', 1, 5000, 500, '8.jpg', 'In October 1998, Nokia became the best-selling mobile phone brand in the world;\r\nNokia’s operating profit went from $1 billion in 1995 to almost $4 billion by 1999;\r\nThe best-selling mobile phone of all time, the Nokia 1100, was created in 2003;\r\nIn 2007, Apple introduced the iPhone;\r\nBy the end of 2007, half of all smartphones sold in the world were Nokias, while Apple’s iPhone had a mere 5 per cent share of the global market;\r\nIn 2010 Nokia launched the “iPhone killer” but failed to match the competition;\r\nThe quality of Nokia’s high-end phones continues to decline;\r\nIn just six years, the market value of Nokia declined by about 90%;\r\nNokia’s decline accelerates by 2011 and is acquired by Microsoft in 2013', 'In October 1998, Nokia became the best-selling mobile phone brand in the world;\r\nNokia’s operating profit went from $1 billion in 1995 to almost $4 billion by 1999;\r\nThe best-selling mobile phone of all time, the Nokia 1100, was created in 2003;\r\nIn 2007, Apple introduced the iPhone;\r\nBy the end of 2007, half of all smartphones sold in the world were Nokias, while Apple’s iPhone had a mere 5 per cent share of the global market;\r\nIn 2010 Nokia launched the “iPhone killer” but failed to match the competition;\r\nThe quality of Nokia’s high-end phones continues to decline;\r\nIn just six years, the market value of Nokia declined by about 90%;\r\nNokia’s decline accelerates by 2011 and is acquired by Microsoft in 2013', '2020-12-19 03:24:25', '2020-12-19 03:24:25', NULL),
+(8, 'Nokia V1', 1, 5000, 499, '8.jpg', 'In October 1998, Nokia became the best-selling mobile phone brand in the world;\r\nNokia’s operating profit went from $1 billion in 1995 to almost $4 billion by 1999;\r\nThe best-selling mobile phone of all time, the Nokia 1100, was created in 2003;\r\nIn 2007, Apple introduced the iPhone;\r\nBy the end of 2007, half of all smartphones sold in the world were Nokias, while Apple’s iPhone had a mere 5 per cent share of the global market;\r\nIn 2010 Nokia launched the “iPhone killer” but failed to match the competition;\r\nThe quality of Nokia’s high-end phones continues to decline;\r\nIn just six years, the market value of Nokia declined by about 90%;\r\nNokia’s decline accelerates by 2011 and is acquired by Microsoft in 2013', 'In October 1998, Nokia became the best-selling mobile phone brand in the world;\r\nNokia’s operating profit went from $1 billion in 1995 to almost $4 billion by 1999;\r\nThe best-selling mobile phone of all time, the Nokia 1100, was created in 2003;\r\nIn 2007, Apple introduced the iPhone;\r\nBy the end of 2007, half of all smartphones sold in the world were Nokias, while Apple’s iPhone had a mere 5 per cent share of the global market;\r\nIn 2010 Nokia launched the “iPhone killer” but failed to match the competition;\r\nThe quality of Nokia’s high-end phones continues to decline;\r\nIn just six years, the market value of Nokia declined by about 90%;\r\nNokia’s decline accelerates by 2011 and is acquired by Microsoft in 2013', '2020-12-19 03:24:25', '2020-12-23 01:19:29', NULL),
 (9, 'MObile Younn', 3, 2500, 25, '9.jpg', 'sfdhgsthstrh', 'sdfgstrhwthw', '2020-12-19 05:34:00', '2020-12-19 05:34:00', NULL),
 (10, 'HP 100B3', 1, 56932, 25, '10.jpg', 'fdghsdfhdsh', 'shgwsrthywr6yh', '2020-12-19 06:25:52', '2020-12-19 06:25:52', NULL);
 
@@ -362,6 +398,12 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `order_lists`
+--
+ALTER TABLE `order_lists`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -400,7 +442,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -430,13 +472,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `order_lists`
+--
+ALTER TABLE `order_lists`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `products`
