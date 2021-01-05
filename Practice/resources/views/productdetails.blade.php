@@ -49,8 +49,9 @@
             <div class="col-lg-6">
                 <div class="product-single-content">
                     <h3>{{ $product_info->product_name }}</h3>
+                    <h6>Available Quantity: {{ $product_info->product_quantity }}</h6>
                     <div class="rating-wrap fix">
-                        <span class="pull-left">{{ $product_info->product_price }}</span>
+                        <span class="pull-left">Price : {{ $product_info->product_price }}</span>
                         <ul class="rating pull-right">
                             <li><i class="fa fa-star"></i></li>
                             <li><i class="fa fa-star"></i></li>
@@ -62,17 +63,23 @@
                     </div>
                     <p>{{ $product_info->product_short_description }}</p>
                     <ul class="input-style">
-                <form action="{{ url('add/to/cart') }}" method="post">
-                    @csrf
-                    <input type="hidden" value="{{ $product_info->id }}" name="product_id"/>
-                        <li class="quantity cart-plus-minus">
-                            <input type="text" value="1" name="quantity"/>
-                        </li>
-                        <li>
-                            <button type="submit" class="btn btn-primary">Add to Cart</button>
-                        </li>
-                    </ul>
-                </form>
+                        @if ($product_info->product_quantity == 0)
+                            <div class="alert alert-danger">
+                                Your product is currently out of stock!
+                            </div>
+                            @else
+                            <form action="{{ url('add/to/cart') }}" method="post">
+                                @csrf
+                                <input type="hidden" value="{{ $product_info->id }}" name="product_id"/>
+                                    <li class="quantity cart-plus-minus">
+                                        <input type="text" value="1" name="quantity"/>
+                                    </li>
+                                    <li>
+                                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                    </li>
+                                </ul>
+                            </form>
+                        @endif
                     <ul class="cetagory">
                         <li>Categories:</li>
                         <li><a href="#">{{ $product_info->relationtocategorytable->category_name }}</a></li>
