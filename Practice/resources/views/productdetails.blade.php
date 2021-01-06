@@ -3,6 +3,7 @@
 <!-- .breadcumb-area start -->
 <div class="breadcumb-area bg-img-4 ptb-100">
     <div class="container">
+        
         <div class="row">
             <div class="col-12">
                 <div class="breadcumb-wrap text-center">
@@ -20,6 +21,11 @@
 <!-- single-product-area start-->
 <div class="single-product-area ptb-100">
     <div class="container">
+        @if (session('cart_error'))
+        <div class="alert alert-danger">
+            {{ session('cart_error') }}
+        </div>
+        @endif
         <div class="row">
             <div class="col-lg-6">
                 <div class="product-single-img">
