@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2020 at 06:33 PM
+-- Generation Time: Dec 23, 2020 at 06:34 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -36,13 +36,6 @@ CREATE TABLE `carts` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `carts`
---
-
-INSERT INTO `carts` (`id`, `product_id`, `quantity`, `ip_address`, `created_at`, `updated_at`) VALUES
-(15, 7, 1, '127.0.0.1', '2020-12-23 01:28:22', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -66,7 +59,8 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `category_name`, `user_id`, `category_photo`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'Computer', 3, '1.jpg', '2020-12-15 05:10:47', '2020-12-15 05:10:47', NULL),
 (2, 'Headphone', 3, '2.jpg', '2020-12-15 06:30:06', '2020-12-15 06:30:06', NULL),
-(3, 'Mobile', 1, '3.jpg', '2020-12-16 07:48:52', '2020-12-23 02:32:10', NULL);
+(3, 'Mobile', 1, '3.jpg', '2020-12-16 07:48:52', '2020-12-23 02:32:10', NULL),
+(4, 'Camera', 1, '4.png', '2020-12-23 23:30:05', '2020-12-23 23:30:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -184,7 +178,9 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `user_id`, `full_name`, `email`, `phone_number`, `country`, `address`, `post_code`, `city`, `notes`, `payment_option`, `sub_total`, `total`, `created_at`, `updated_at`) VALUES
 (1, 7, 'Al Maksumee', 'zara1@gmail.com', '0195326587', 'Bangladesh', 'Dhaka', '1400', 'Narayanganj', 'ksjahdfkahsdkfhakjhdsfhu', 1, 19704.00, 8669.76, '2020-12-23 01:10:50', NULL),
-(2, 7, 'Al Maksumee', 'zara1@gmail.com', '0195326587', 'Bangladesh', 'Dhaka', '1400', 'Narayanganj', 'dfhsghshgsgh', 1, 5000.00, 2200.00, '2020-12-23 01:19:29', NULL);
+(2, 7, 'Al Maksumee', 'zara1@gmail.com', '0195326587', 'Bangladesh', 'Dhaka', '1400', 'Narayanganj', 'dfhsghshgsgh', 1, 5000.00, 2200.00, '2020-12-23 01:19:29', NULL),
+(3, 7, 'Al Maksumee', 'zara1@gmail.com', '0195326587', 'Bangladesh', 'Dhaka', '1400', 'Narayanganj', 'dsfhjhewry67uj', 1, 19300.00, 8492.00, '2020-12-23 02:54:11', NULL),
+(4, 5, 'Zara', 'zara@gmail.com', '0195326587', 'Bangladesh', 'Dhaka', '1400', 'Narayanganj', 'fdre6yh', 1, 213000.00, 213000.00, '2020-12-24 02:27:45', NULL);
 
 -- --------------------------------------------------------
 
@@ -218,7 +214,11 @@ INSERT INTO `order_lists` (`id`, `order_id`, `user_id`, `product_id`, `quantity`
 (9, 3, 7, 9, 3, '2020-12-23 01:08:18', NULL),
 (10, 1, 7, 2, 3, '2020-12-23 01:10:50', NULL),
 (11, 1, 7, 6, 2, '2020-12-23 01:10:50', NULL),
-(12, 2, 7, 8, 1, '2020-12-23 01:19:29', NULL);
+(12, 2, 7, 8, 1, '2020-12-23 01:19:29', NULL),
+(13, 3, 7, 7, 3, '2020-12-23 02:54:11', NULL),
+(14, 3, 7, 9, 1, '2020-12-23 02:54:11', NULL),
+(15, 4, 5, 12, 4, '2020-12-24 02:27:45', NULL),
+(16, 4, 5, 12, 2, '2020-12-24 02:27:45', NULL);
 
 -- --------------------------------------------------------
 
@@ -262,10 +262,12 @@ INSERT INTO `products` (`id`, `product_name`, `category_id`, `product_price`, `p
 (4, 'HP laptop', 1, 256325, 25, '4.jpg', 'dfgsdfhshgthtr', 'sdfsghhrthwert', '2020-12-16 12:30:38', '2020-12-16 12:30:38', NULL),
 (5, 'Dell Laptop', 1, 5000, 258, '5.jpg', 'ataqwerqtwr', 'wefqawergfqewrg', '2020-12-16 12:32:11', '2020-12-16 12:32:11', NULL),
 (6, 'Yusii Headphone', 2, 1452, 45, '6.jpg', 'rfgqrewqre', 'aqwerfgqrewgqwr', '2020-12-16 12:32:55', '2020-12-16 12:32:55', NULL),
-(7, 'Sony Headphone', 2, 5600, 369, '7.jpg', 'dsfgwerwgerwr', 'werwgqewertg', '2020-12-16 12:33:45', '2020-12-16 12:33:45', NULL),
+(7, 'Sony Headphone', 2, 5600, 366, '7.jpg', 'dsfgwerwgerwr', 'werwgqewertg', '2020-12-16 12:33:45', '2020-12-23 02:54:11', NULL),
 (8, 'Nokia V1', 1, 5000, 499, '8.jpg', 'In October 1998, Nokia became the best-selling mobile phone brand in the world;\r\nNokia’s operating profit went from $1 billion in 1995 to almost $4 billion by 1999;\r\nThe best-selling mobile phone of all time, the Nokia 1100, was created in 2003;\r\nIn 2007, Apple introduced the iPhone;\r\nBy the end of 2007, half of all smartphones sold in the world were Nokias, while Apple’s iPhone had a mere 5 per cent share of the global market;\r\nIn 2010 Nokia launched the “iPhone killer” but failed to match the competition;\r\nThe quality of Nokia’s high-end phones continues to decline;\r\nIn just six years, the market value of Nokia declined by about 90%;\r\nNokia’s decline accelerates by 2011 and is acquired by Microsoft in 2013', 'In October 1998, Nokia became the best-selling mobile phone brand in the world;\r\nNokia’s operating profit went from $1 billion in 1995 to almost $4 billion by 1999;\r\nThe best-selling mobile phone of all time, the Nokia 1100, was created in 2003;\r\nIn 2007, Apple introduced the iPhone;\r\nBy the end of 2007, half of all smartphones sold in the world were Nokias, while Apple’s iPhone had a mere 5 per cent share of the global market;\r\nIn 2010 Nokia launched the “iPhone killer” but failed to match the competition;\r\nThe quality of Nokia’s high-end phones continues to decline;\r\nIn just six years, the market value of Nokia declined by about 90%;\r\nNokia’s decline accelerates by 2011 and is acquired by Microsoft in 2013', '2020-12-19 03:24:25', '2020-12-23 01:19:29', NULL),
-(9, 'MObile Younn', 3, 2500, 25, '9.jpg', 'sfdhgsthstrh', 'sdfgstrhwthw', '2020-12-19 05:34:00', '2020-12-19 05:34:00', NULL),
-(10, 'HP 100B3', 1, 56932, 25, '10.jpg', 'fdghsdfhdsh', 'shgwsrthywr6yh', '2020-12-19 06:25:52', '2020-12-19 06:25:52', NULL);
+(9, 'MObile Younn', 3, 2500, 24, '9.jpg', 'sfdhgsthstrh', 'sdfgstrhwthw', '2020-12-19 05:34:00', '2020-12-23 02:54:11', NULL),
+(10, 'HP 100B3', 1, 56932, 25, '10.jpg', 'fdghsdfhdsh', 'shgwsrthywr6yh', '2020-12-19 06:25:52', '2020-12-19 06:25:52', NULL),
+(12, 'DSLR Camera', 4, 35500, 94, '12.jpg', 'Encyclopedia Britannica\'s editors oversee subject areas in which they have extensive knowledge, whether from years of experience gained by working on that content or via study for an advanced degree....', 'Though there are many types of cameras, all include five indispensable components: (1) the camera box, which holds and protects the sensitive film from all light except that entering through the lens; (2) film, on which the image is recorded, a light-sensitive strip usually wound on a spool, either manually or automatically, as successive pictures are taken; (3) the light control, consisting of an aperture or diaphragm and a shutter, both often adjustable; (4) the lens, which focuses the light rays from the subject onto the film, creating the image, and which is usually adjustable by moving forward or back, changing the focus; and (5) the viewing system, which may be separate from the lens system (usually above it) or may operate through it by means of a mirror.', '2020-12-23 23:34:45', '2020-12-24 02:27:45', NULL),
+(13, 'Canon 900', 4, 85300, 50, '13.jpg', 'asdrgwsghwsdtgwhstbt4gb', 'wsghtehywertherheyhtt', '2020-12-23 23:39:46', '2020-12-23 23:39:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -293,7 +295,11 @@ INSERT INTO `product_multiple_photos` (`id`, `product_id`, `photo_name`, `create
 (5, 9, '6-5.jpg', '2020-12-19 05:34:01', NULL),
 (6, 10, '6-1.jpg', '2020-12-19 06:25:52', NULL),
 (7, 10, '6-2.jpg', '2020-12-19 06:25:53', NULL),
-(8, 10, '6-3.jpg', '2020-12-19 06:25:53', NULL);
+(8, 10, '6-3.jpg', '2020-12-19 06:25:53', NULL),
+(9, 12, '6-1.jpg', '2020-12-23 23:34:45', NULL),
+(10, 12, '6-2.jpg', '2020-12-23 23:34:46', NULL),
+(11, 12, '6-3.jpg', '2020-12-23 23:34:46', NULL),
+(12, 13, '6-1.jpg', '2020-12-23 23:39:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -319,7 +325,9 @@ CREATE TABLE `sliders` (
 --
 
 INSERT INTO `sliders` (`id`, `slider_title`, `user_id`, `slider_subtitle`, `slider_image`, `slider_description`, `button_text`, `button_link`, `created_at`, `updated_at`) VALUES
-(1, 'Md. Sakib Iqbal Tajim', 4, 'dsafasdfa', '1.jpg', 'asdfasdf', 'asdfaf', 'asdfasdfa', '2020-12-15 15:45:14', '2020-12-15 15:45:15');
+(2, 'HP Computer', 1, 'Winter Offer!', '2.jpg', 'Bangladesh Brand ambassador!', 'Get it', 'http://minarkhan.com', '2020-12-23 23:22:45', '2020-12-23 23:22:46'),
+(3, 'Sony Headphone', 1, 'Feel the Sound!', '3.jpg', 'Sound is all about illusion', 'Get it', 'http://minarkhan.com', '2020-12-23 23:24:04', '2020-12-23 23:24:04'),
+(4, 'Mobile Mela', 1, 'Choose your own style with mobile!', '4.jpg', 'Bangladesh Brand ambassador!', 'Get it', 'http://minarkhan.com', '2020-12-23 23:25:35', '2020-12-23 23:25:35');
 
 -- --------------------------------------------------------
 
@@ -442,13 +450,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `contacts`
@@ -478,31 +486,31 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `order_lists`
 --
 ALTER TABLE `order_lists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `product_multiple_photos`
 --
 ALTER TABLE `product_multiple_photos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `sliders`
 --
 ALTER TABLE `sliders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -48,12 +48,22 @@
                             <tbody>
                                 @php
                                     $sub_total_cart = 0;
+                                    $flag = 0;
                                 @endphp
                                 
                                 @foreach ($carts as $cart)
                                 <tr>
                                     <td class="images"><img src="{{ asset('uploads/product_photos') }}/{{ App\Product::find($cart->product_id)->product_thumbnail_photo }}" alt=""></td>
-                                    <td class="product"><a href="single-product.html">{{ App\Product::find($cart->product_id)->product_name}}</a></td>
+                                    <td class="product"><a href="single-product.html">{{ App\Product::find($cart->product_id)->product_name}} (Available Q: {{ App\Product::find($cart->product_id)->product_quantity}})</a>
+                                    <br>
+                                    
+                                        @if(App\Product::find($cart->product_id)->product_quantity < $cart->quantity)
+                                            <span class="text-danger">You have to remove or decrease product amount</span>
+                                        @php
+                                            $flag++;
+                                        @endphp
+                                        @endif
+                                    </td>
                                     <td class="ptice">${{ App\Product::find($cart->product_id)->product_price }}</td>
                                     <td class="quantity cart-plus-minus">
                                         <input type="text" value="{{ $cart->quantity }}" name="cart_quantity[{{$cart->id}}]"/>
@@ -103,11 +113,13 @@
                                         <li><span class="pull-left"> Total </span>${{  $final_total = $sub_total_cart }}</li>
                                         @endisset
                                     </ul>
+                                    @if ($flag == 0)   
                                     <form action="{{ url('checkout') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="total" value="{{$final_total}}">
                                         <button type="submit" class="btn btn-danger">Proceed to Checkout</button>
                                     </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>

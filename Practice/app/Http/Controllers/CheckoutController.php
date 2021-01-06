@@ -73,8 +73,11 @@ class CheckoutController extends Controller
     }
     return redirect('/');
         }else {
-          echo "Go ONline";
-          return redirect('stripe')->with('total', $request->total);
+          //echo "Go Online";
+          return view('stripe', [
+              'request_all_data' => $request->all()
+          ]);
+        //   return redirect('stripe')->with('', $request->all());
         }
         
     }

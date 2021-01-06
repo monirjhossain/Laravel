@@ -33,10 +33,7 @@
             <div class="panel panel-default credit-card-box">
                 <div class="panel-heading display-table" >
                     <div class="row display-tr" >
-                        <h3 class="panel-title display-td" >Payment Details</h3>
-                        <div class="display-td" >                            
-                            <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
-                        </div>
+                        <h3>Payment Details</h3>  
                     </div>                    
                 </div>
                 <div class="panel-body">
@@ -90,11 +87,22 @@
                                     again.</div>
                             </div>
                         </div>
-                        <input type="hidden" name="total" value="{{ session('total') }}">
+                        <input type="hidden" name="full_name" value="{{ $request_all_data['full_name'] }}">
+                        <input type="hidden" name="email" value="{{ $request_all_data['email'] }}">
+                        <input type="hidden" name="phone_number" value="{{ $request_all_data['phone_number'] }}">
+                        <input type="hidden" name="country" value="{{ $request_all_data['country'] }}">
+                        <input type="hidden" name="address" value="{{ $request_all_data['address'] }}">
+                        <input type="hidden" name="post_code" value="{{ $request_all_data['post_code'] }}">
+                        <input type="hidden" name="city" value="{{ $request_all_data['city'] }}">
+                        <input type="hidden" name="notes" value="{{ $request_all_data['notes'] }}">
+                        <input type="hidden" name="payment_option" value="{{ $request_all_data['payment_option'] }}">
+                        <input type="hidden" name="sub_total" value="{{ $request_all_data['sub_total'] }}">
+                        <input type="hidden" name="total" value="{{ $request_all_data['total'] }}">
+                        
   
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now (${{ session('total') }})</button>
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now (${{ $request_all_data['total'] }})</button>
                             </div>
                         </div>
                           
