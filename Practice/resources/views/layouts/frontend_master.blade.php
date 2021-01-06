@@ -76,7 +76,7 @@
                                     <li><a href="{{ url('customer/register') }}">Register</a></li>
                                     <li><a href="{{ url('cart') }}">Cart</a></li>
                                     <li><a href="{{ url('checkout') }}">Checkout</a></li>
-                                    <li><a href="wishlist.html">wishlist</a></li>
+                                    <li><a href="{{ url('wishlist') }}">wishlist</a></li>
                                 </ul>
                             </li>
                             <li><a href="{{ url('customer/register') }}"> Customer Register </a></li>

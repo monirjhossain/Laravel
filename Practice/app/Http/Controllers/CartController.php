@@ -21,7 +21,7 @@ class CartController extends Controller
         if(Product::find($request->product_id)->product_quantity < $request->quantity){
                 return back()->with('cart_error', 'You can not add product more than available product');
         }else{
-                  Cart::insert([
+            Cart::insert([
             'product_id' => $request->product_id,
             'quantity' => $request->quantity,
             'ip_address' => request()->ip(), 
