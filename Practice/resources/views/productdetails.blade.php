@@ -49,7 +49,7 @@
             <div class="col-lg-6">
                 <div class="product-single-content">
                     <h3>{{ $product_info->product_name }}</h3>
-                    <h6>Available Quantity: {{ $product_info->product_quantity }}</h6>
+                    <h6>Available in Stock: {{ $product_info->product_quantity }}</h6>
                     <div class="rating-wrap fix">
                         <span class="pull-left">Price : {{ $product_info->product_price }}</span>
                         <ul class="rating pull-right">
