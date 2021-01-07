@@ -14,8 +14,13 @@ class WishlistController extends Controller
 
     function index(){
         return view('wishlist', [
-            'carts' => Cart::where('ip_address')
+            'carts' => Cart::where('ip_address', request()->ip())->get()
         ]);
+    }
+
+    function wishlistdelete($cart_id){
+        Cart::find($cart_id)->delete();
+        return back();
     }
     
 }

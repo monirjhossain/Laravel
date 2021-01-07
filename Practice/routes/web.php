@@ -97,11 +97,13 @@ Route::post('/add/coupon/post', 'CouponController@addcouponpost');
 
 //Checkout Controller Routes
 
-Route::post('checkout', 'CheckoutController@index');
+Route::get('checkout', 'CheckoutController@index');
 Route::post('checkout/post', 'CheckoutController@checkoutpost');
 
 //Wishlist Controller Routs
 Route::get('wishlist', 'WishlistController@index');
+Route::get('add/to/wishlist', 'WishlistController@addtowishlist');
+Route::get('/wishlist/delete/{cart_id}', 'CartController@cartdelete');
 
 //Customer Register Controller Routes
 

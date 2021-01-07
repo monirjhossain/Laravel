@@ -22,7 +22,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="http://themepresss.com/tf/html/tohoney/cart">
+                    <form action="">
                         <table class="table-responsive cart-wrap">
                             <thead>
                                 <tr>
@@ -35,14 +35,22 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                
                                 @foreach ($carts as $cart)
                                 <tr>
                                     <td class="images"><img src="{{ asset('uploads/product_photos') }}/{{ App\Product::find($cart->product_id)->product_thumbnail_photo }}" alt=""></td>
-                                    <td class="product"><a href="single-product.html">Coconut Oil</a></td>
-                                    <td class="ptice">$139.00</td>
-                                    <td class="stock">In Stock</td>
-                                    <td class="addcart"><a href="cart.html">Add to Cart</a></td>
-                                    <td class="remove"><i class="fa fa-times"></i></td>
+                                    <td class="product"><a href="single-product.html">{{ App\Product::find($cart->product_id)->product_name}}</a></td>
+                                    <td class="ptice">${{ App\Product::find($cart->product_id)->product_price }}</td>
+                                    
+                                    <td class="stock">
+                                        @if (App\Product::find($cart->product_id)->product_quantity >= 1)
+                                        <span class="text-success">In Stock</span>
+                                        @else
+                                        <span class="text-danger">Out of Stock</span>
+                                    @endif
+                                    </td>
+                                    <td class="addcart"><a href="{{ url('cart') }}">Add to Cart</a></td>
+                                    <td class="remove"><a href="{{ url('cart/delete') }}/{{ $cart->id }}"><i class="fa fa-times"></i></a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
