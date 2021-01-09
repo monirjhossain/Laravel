@@ -79,7 +79,18 @@
                                     <li><a href="{{ url('wishlist') }}">wishlist</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{{ url('customer/register') }}"> Customer Register </a></li>
+                            <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                            <li><a href="{{ url('customer/register') }}"> Login/Register </a></li>
                         </ul>
                     </div>
                 </div>

@@ -24,6 +24,8 @@
         <div class="row">
             <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
                 <div class="account-form form-style">
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
                     <p>User Name or Email Address *</p>
                     <input id="name" type="text" class=" @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
@@ -49,6 +51,7 @@
                         <a href="{{ url('login') }}">Or Login</a>
                     </div>
                 </div>
+            </form>
             </div>
         </div>
     </div>
