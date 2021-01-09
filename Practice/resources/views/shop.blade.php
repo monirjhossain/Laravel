@@ -20,6 +20,16 @@
     <!-- product-area start -->
     <div class="product-area pt-100">
         <div class="container">
+            
+            @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong> {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @endif
+
             <div class="row">
                 <div class="col-sm-12 col-lg-12">
                     <div class="product-menu">
@@ -51,7 +61,11 @@
                                     <div class="product-icon flex-style">
                                         <ul>
                                             <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="{{ url('add/to/wishlist') }}"><i class="fa fa-heart"></i></a></li>
+                                            <form action="{{ url('add/to/wishlist') }}">
+                                            @csrf
+                                            <input type="hidden" value="{{ $product->id }}" name="product_id"/>
+                                            <li><a href="{{ url('add/to/wishlist/' . $product->id) }}"><i class="fa fa-heart"></i></a></li>
+                                            </form>
                                             <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
                                         </ul>
                                     </div>

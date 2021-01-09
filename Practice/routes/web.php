@@ -20,8 +20,9 @@ Route::get('/about', 'FrontendController@about');
 Route::get('/shop', 'FrontendController@shop');
 
 //Contact Page Routes
-Route::get('/contact', 'FrontendController@contact');
-Route::post('/contact', 'ContactController@contactSubmit')->name('contact.submit');
+Route::get('/contact', 'ContactUsFormController@createForm');
+
+Route::post('/contact', 'ContactUsFormController@ContactUsForm')->name('contact.store');
 
 //Single page Product details 
 Route::get('/product/details/{product_id}', 'FrontendController@productdetails');
@@ -86,6 +87,8 @@ Route::get('/cart/{coupon_name}', 'CartController@cart');
 
 Route::post('/add/to/cart', 'CartController@addtocart');
 
+Route::get('/add/to/cart/{id}', 'CartController@addCart');
+
 Route::get('/cart/delete/{cart_id}', 'CartController@cartdelete');
 
 Route::post('/cart/update', 'CartController@cartupdate');
@@ -96,17 +99,16 @@ Route::get('/add/coupon', 'CouponController@addcoupon');
 Route::post('/add/coupon/post', 'CouponController@addcouponpost');
 
 //Checkout Controller Routes
+Route::post('checkout', 'CheckoutController@index');
 
-Route::get('checkout', 'CheckoutController@index');
 Route::post('checkout/post', 'CheckoutController@checkoutpost');
 
 //Wishlist Controller Routs
+Route::get('wishlist', 'WishlistController@wishlist');
 
-Route::get('wishlist', 'WishlistController@index');
+Route::get('add/to/wishlist/{product_id}', 'WishlistController@addtowishlist');
 
-Route::get('add/to/wishlist', 'WishlistController@addtowishlist');
-
-Route::get('/wishlist/delete/{cart_id}', 'CartController@cartdelete');
+Route::get('/wishlist/delete/{wishlist_id}', 'wishlistController@wishlistdelete');
 
 //Customer Register Controller Routes
 

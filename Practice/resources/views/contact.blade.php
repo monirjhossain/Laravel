@@ -29,23 +29,56 @@
                 <div class="col-lg-8 col-12">
                     <div class="contact-form form-style">
                         <div class="cf-msg"></div>
-                        <form action="{{ route('contact.submit') }}" method="POST" id="cf" enctype="multipart/form-data">
+                        <form action="{{ route('contact.store') }}" method="POST" id="cf" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" placeholder="Name" id="fname" name="fname">
+                                    <input type="text" class="{{ $errors->has('name') ? 'error' : '' }}" placeholder="Name" id="name" name="name">
+                                    <!-- Error -->
+                                    @if ($errors->has('name'))
+                                    <div class="error">
+                                        {{ $errors->first('name') }}
+                                    </div>
+                                    @endif
                                 </div>
                                 <div class="col-12  col-sm-6">
-                                    <input type="text" placeholder="Email" id="email" name="email">
+                                    <input type="text" class="{{ $errors->has('email') ? 'error' : '' }}" placeholder="Email" id="email" name="email">
+                                    <!-- Error -->
+                                    @if ($errors->has('email'))
+                                    <div class="error">
+                                        {{ $errors->first('email') }}
+                                    </div>
+                                    @endif
+                                </div>
+                                <div class="col-12  col-sm-6">
+                                    <input type="text" class="{{ $errors->has('phone') ? 'error' : '' }}" placeholder="Phone Number" id="phone" name="phone">
+                                    <!-- Error -->
+                                    @if ($errors->has('phone'))
+                                    <div class="error">
+                                        {{ $errors->first('phone') }}
+                                    </div>
+                                    @endif
+                                </div>
+                                <div class="col-12  col-sm-6">
+                                    <input type="text" class="{{ $errors->has('subject') ? 'error' : '' }}" placeholder="Subject" id="subject" name="subject">
+                                    <!-- Error -->
+                                    @if ($errors->has('subject'))
+                                    <div class="error">
+                                        {{ $errors->first('subject') }}
+                                    </div>
+                                    @endif
                                 </div>
                                 <div class="col-12">
-                                    <input type="text" placeholder="Subject" id="subject" name="subject">
+                                    <textarea class="contact-textarea" class="{{ $errors->has('msg') ? 'error' : '' }}" placeholder="Message" id="msg" name="msg"></textarea>
+                                    <!-- Error -->
+                                    @if ($errors->has('msg'))
+                                    <div class="error">
+                                        {{ $errors->first('msg') }}
+                                    </div>
+                                    @endif
                                 </div>
                                 <div class="col-12">
-                                    <textarea class="contact-textarea" placeholder="Message" id="msg" name="msg"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button name="submit">SEND MESSAGE</button>
+                                    <button name="submit" class="btn btn-dark btn-block">SEND MESSAGE</button>
                                 </div>
                             </div>
                         </form>

@@ -8,7 +8,7 @@
                     <div class="breadcumb-wrap text-center">
                         <h2>Wishlist</h2>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ url('/') }}">Home</a></li>
                             <li><span>Wishlist</span></li>
                         </ul>
                     </div>
@@ -36,21 +36,23 @@
                             </thead>
                             <tbody>
                                 
-                                @foreach ($carts as $cart)
+                                @foreach ($wishlists as $wishlist)
                                 <tr>
-                                    <td class="images"><img src="{{ asset('uploads/product_photos') }}/{{ App\Product::find($cart->product_id)->product_thumbnail_photo }}" alt=""></td>
-                                    <td class="product"><a href="single-product.html">{{ App\Product::find($cart->product_id)->product_name}}</a></td>
-                                    <td class="ptice">${{ App\Product::find($cart->product_id)->product_price }}</td>
+                                    <td class="images"><img src="{{ asset('uploads/product_photos') }}/{{ App\Product::find($wishlist->product_id)->product_thumbnail_photo }}" alt=""></td>
+                                    <td class="product"><a href="single-product.html">{{ App\Product::find($wishlist->product_id)->product_name}}</a></td>
+                                    <td class="ptice">${{ App\Product::find($wishlist->product_id)->product_price }}</td>
                                     
                                     <td class="stock">
-                                        @if (App\Product::find($cart->product_id)->product_quantity >= 1)
+                                        @if (App\Product::find($wishlist->product_id)->product_quantity > 0)
                                         <span class="text-success">In Stock</span>
                                         @else
                                         <span class="text-danger">Out of Stock</span>
-                                    @endif
+                                        @endif
                                     </td>
-                                    <td class="addcart"><a href="{{ url('cart') }}">Add to Cart</a></td>
-                                    <td class="remove"><a href="{{ url('cart/delete') }}/{{ $cart->id }}"><i class="fa fa-times"></i></a></td>
+                                    <td class="addcart">
+                                        <a href="{{ url('add/to/cart/'.App\Product::find($wishlist->product_id)->id) }}">Add to Cart</a>
+                                    </td>
+                                    <td class="remove"><a href="{{ url('wishlist/delete') }}/{{ $wishlist->id }}"><i class="fa fa-times"></i></a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

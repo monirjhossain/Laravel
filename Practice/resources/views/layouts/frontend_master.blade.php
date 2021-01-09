@@ -116,36 +116,36 @@
                         <ul class="search-cart-wrapper d-flex">
                             <li class="search-tigger"><a href="javascript:void(0);"><i class="flaticon-search"></i></a></li>
                             <li>
-                                <a href="javascript:void(0);"><i class="flaticon-like"></i> <span>2</span></a>
+                                <a href="javascript:void(0);"><i class="flaticon-like"></i> <span>
+                                    {{ App\Wishlist::where('ip_address', request()->ip())->count() }}</span></a>
                                 <ul class="cart-wrap dropdown_style">
+                                    @php
+                                        $sub_total = 0;
+                                    @endphp
+                                    @foreach (App\Wishlist::where('ip_address', request()->ip())->get() as $wishlist)
                                     <li class="cart-items">
                                         <div class="cart-img">
-                                            <img src="{{ asset('frontend_assets') }}/images/cart/1.jpg" alt="">
+                                            <img style="width: 68px;" src="{{ asset('uploads/product_photos') }}/{{ App\Product::find($wishlist->product_id)->product_thumbnail_photo }}" alt="">
                                         </div>
                                         <div class="cart-content">
-                                            <a href="cart.html">Pure Nature Product</a>
-                                            <span>QTY : 1</span>
-                                            <p>$35.00</p>
+                                            <a href="cart.html">{{ App\Product::find($wishlist->product_id)->product_name }}</a>
+                                            <span>QTY : {{ $wishlist->quantity }}</span>
+                                            <p>${{ App\Product::find($wishlist->product_id)->product_price * $wishlist->quantity }}</p>
                                             <i class="fa fa-times"></i>
+                                            @php
+                                               $sub_total = ($sub_total + App\Product::find($wishlist->product_id)->product_price * $wishlist->quantity)
+                                            @endphp
+                                            <a href="{{ url('wishlist/delete') }}/{{ $wishlist->id }}"><i class="fa fa-times"></i></a>
                                         </div>
                                     </li>
-                                    <li class="cart-items">
-                                        <div class="cart-img">
-                                            <img src="{{ asset('frontend_assets') }}/images/cart/3.jpg" alt="">
-                                        </div>
-                                        <div class="cart-content">
-                                            <a href="cart.html">Pure Nature Product</a>
-                                            <span>QTY : 1</span>
-                                            <p>$35.00</p>
-                                            <i class="fa fa-times"></i>
-                                        </div>
-                                    </li>
-                                    <li>Subtotol: <span class="pull-right">$70.00</span></li>
+                                    @endforeach
+                                    <li>Subtotol: <span class="pull-right">${{ $sub_total }}</span></li>
                                     <li>
-                                        <button>Check Out</button>
+                                        <a href="{{ url('wishlist') }}" class="btn btn-danger">Checkout</a>
                                     </li>
                                 </ul>
                             </li>
+                            
                             <li>
                                 <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>
                                     {{ App\Cart::where('ip_address', request()->ip())->count() }}    

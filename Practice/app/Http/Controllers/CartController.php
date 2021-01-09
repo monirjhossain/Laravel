@@ -7,10 +7,23 @@ use Illuminate\Http\Request;
 use App\Cart;
 use App\Coupon;
 use App\Product;
+use App\Wishlist;
 use Carbon\Carbon;
 
 class CartController extends Controller
 {
+    public function addCart($id)
+    {
+         $item = Wishlist::where('product_id',$id)->first();
+        Cart::insert([
+            'product_id' => $id,
+            'quantity' => $item->quantity,
+            'ip_address' => $item->ip_address, 
+            'created_at' => Carbon::now(),
+        ]);
+        Wishlist::where('product_id',$id)->delete();
+        return back();
+    }
     function addtocart(Request $request){
         if(Cart::where('product_id', $request->product_id)->where('ip_address', request()->ip())->exists()){
             Cart::where('product_id', $request->product_id)->where('ip_address', request()->ip())->increment('quantity',$request->quantity);
@@ -29,7 +42,7 @@ class CartController extends Controller
         ]);
             }
         }
-      
+        
         return back();
     }
 

@@ -116,7 +116,7 @@
                                     @if ($flag == 0)   
                                     <form action="{{ url('checkout') }}" method="post">
                                         @csrf
-                                        <input type="hidden" name="total" value="{{$final_total}}">
+                                        <input type="hidden" name="total" value="{{ $final_total }}">
                                         <button type="submit" class="btn btn-danger">Proceed to Checkout</button>
                                     </form>
                                     @endif
