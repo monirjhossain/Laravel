@@ -61,7 +61,7 @@
                             {{ __('Login') }}
                         </button>
                         <div class="text-center">
-                            <a href="{{ url('register') }}">Or Creat an Account</a>
+                            <a href="{{ url('customer/register') }}">Or Creat an Account</a>
                         </div>
                     </form> 
                     </div>

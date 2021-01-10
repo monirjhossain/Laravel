@@ -19,7 +19,7 @@ class CartController extends Controller
             'product_id' => $id,
             'quantity' => $item->quantity,
             'ip_address' => $item->ip_address, 
-            'created_at' => Carbon::now(),
+            'created_at' => Carbon::now()
         ]);
         Wishlist::where('product_id',$id)->delete();
         return back();
@@ -38,7 +38,7 @@ class CartController extends Controller
             'product_id' => $request->product_id,
             'quantity' => $request->quantity,
             'ip_address' => request()->ip(), 
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now(),
         ]);
             }
         }

@@ -56,7 +56,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-12 text-center">
-                        <h2 class="big">Deal Of the Day <span>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin</span></h2>
+                        <h2 class="big">Deal Of the Day <span>Contrary to popular belief, Nir-E-Shop is not simply random text. It has roots in a piece of classical Ecommerce site</span></h2>
                     </div>
                     <div class="col-12 col-lg-12 text-center">
                         <div class="count-down-clock text-center">
@@ -92,7 +92,7 @@
                                 <ul>
                                     <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
                                     <li><a href="{{ url('add/to/wishlist/' . $best_sell->id) }}"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
+                                    <li><a href="{{ url('add/to/cart/' . $best_sell->id) }}"><i class="fa fa-shopping-bag"></i></a></li>
                                 </ul>
                             </div>
                         </div>

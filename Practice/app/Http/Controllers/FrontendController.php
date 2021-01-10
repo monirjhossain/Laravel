@@ -21,7 +21,9 @@ class FrontendController extends Controller
         ]);
     }
     function about(){
-        return view('about');
+        return view('about' ,[
+            'best_sells' => Product::offset(0)->limit(4)->get()
+        ]);
     }
     function contact(){
         return view('contact');
