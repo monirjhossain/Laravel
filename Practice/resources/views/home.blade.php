@@ -1,13 +1,22 @@
-@extends('layouts.app')
-
+@extends('layouts/dashboard_master')
+@section('home')
+    active
+@endsection
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card bg-secondary">
+    <div class="sl-mainpanel">
+      <nav class="breadcrumb sl-breadcrumb">
+        <a class="breadcrumb-item" href="{{ url('add/category') }}">Add Category</a>
+        <span class="breadcrumb-item active">User List</span>
+      </nav>
+
+      <div class="sl-pagebody">
+
+        <div class="row row-sm">
+          <div class="col-md-12">
+            <div class="card">
                 <div class="card-header"><h3>{{ __('Dashboard') }}</h3></div>
 
-                <div class="card-body bg-success">
+                <div class="card-body">
                     <h1>Welcome {{ auth::user()->name }}</h1>
                     <h2>Email: {{ auth::user()->email }}</h2>
                 </div>
@@ -17,7 +26,7 @@
     <div class="row mt-3">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header bg-info"> 
+                <div class="card-header"> 
                     <h2>Total user: {{ $total_users }}</h2>
                 </div>
                 <div class="card-body">
@@ -41,17 +50,22 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td><li>{{ $user->created_at->format('d-M-y  h:i:s A') }}</li>
-                                <li>{{ $user->created_at->diffForHumans() }}</li>
+                            <td>
+                              <li>{{ $user->created_at->format('d-M-y  h:i:s A') }}</li>
+                              <li>{{ $user->created_at->diffForHumans() }}</li>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>  
-                    </table>
+                  </table>
                     {{ $users->links() }}
                 </div>
             </div>
         </div>
+      </div>
     </div>
-</div>
 @endsection
+
+    
+
+      
